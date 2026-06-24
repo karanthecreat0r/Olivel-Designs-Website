@@ -1,0 +1,2085 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olivel Designs | Premier Residential Interior Design & Execution in Chennai, Tamil Nadu</title>
+    <meta name="description" content="Olivel Designs specializes in premium residential interior design and execution in Chennai. With our own manufacturing unit, we deliver flawless, custom-crafted home interiors.">
+    <meta name="keywords" content="interior design Chennai, residential interior execution, interior designers in Tamil Nadu, bespoke furniture Chennai, home interiors, modular kitchens Chennai, Olivel Designs, own manufacturing unit">
+    <meta name="author" content="Olivel Designs">
+    <meta name="theme-color" content="#D91624">
+    <link rel="icon" href="assets/favicon.png">
+    <link rel="canonical" href="https://oliveldesigns.com/">
+    
+    <!-- Locally compiled production CSS -->
+    <link rel="stylesheet" href="assets/css/site.min.css">
+    
+    <!-- Google Fonts: Inter & Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons (Lightweight icon library) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <style>
+        /* Custom Styles for smoothness and hiding scrollbars */
+        @media (min-width: 769px) {
+            html { font-size: 120%; }
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F9FA;
+            color: #0A0A0A;
+            overflow-x: hidden;
+        }
+        #three-particle-background {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            opacity: 1;
+        }
+        #three-particle-background canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        body > :not(#three-particle-background) {
+            position: relative;
+            z-index: 1;
+        }
+        main {
+            background: transparent;
+        }
+        .page-section {
+            background-color: transparent !important;
+        }
+        .page-section > section:not(.bg-gray-900):not(.bg-brand-dark) {
+            background-color: rgba(255, 255, 255, .66) !important;
+            backdrop-filter: blur(.5px);
+        }
+        #page-manufacturing,
+        #page-contact {
+            background-color: transparent !important;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero-content-grid {
+            display: grid;
+            grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
+            align-items: center;
+            gap: clamp(42px, 6vw, 92px);
+        }
+        .hero-gallery {
+            position: relative;
+            min-height: 610px;
+            isolation: isolate;
+        }
+        .hero-card {
+            position: absolute;
+            left: 8%;
+            top: 5%;
+            width: 84%;
+            height: 82%;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            text-align: left;
+            cursor: pointer;
+            opacity: 0;
+            pointer-events: none;
+            transform: translate3d(0, 28px, 0) scale(.88);
+            transition: transform .65s cubic-bezier(.2,.75,.2,1), opacity .45s ease;
+        }
+        .hero-card.is-active {
+            z-index: 4;
+            opacity: 1;
+            pointer-events: auto;
+            transform: translate3d(0, 0, 0) scale(1) rotate(-1deg);
+        }
+        .hero-card.is-next {
+            z-index: 3;
+            opacity: .75;
+            pointer-events: auto;
+            transform: translate3d(9%, 7%, 0) scale(.93) rotate(3.5deg);
+        }
+        .hero-card.is-behind {
+            z-index: 2;
+            opacity: .38;
+            pointer-events: auto;
+            transform: translate3d(15%, 12%, 0) scale(.86) rotate(6deg);
+        }
+        .hero-card.is-prev {
+            z-index: 1;
+            opacity: .28;
+            pointer-events: auto;
+            transform: translate3d(-8%, 10%, 0) scale(.84) rotate(-6deg);
+        }
+        .hero-card-frame {
+            display: block;
+            height: 100%;
+            overflow: hidden;
+            border: 9px solid #fff;
+            background: #fff;
+            box-shadow: 0 30px 75px rgba(10, 10, 10, .24);
+        }
+        .hero-card-frame img {
+            width: 100%;
+            height: calc(100% - 76px);
+            object-fit: cover;
+            transition: transform .7s ease;
+        }
+        .hero-card.is-active:hover img { transform: scale(1.035); }
+        .hero-card-caption {
+            height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 0 22px;
+            border-top: 1px solid #e5e7eb;
+            color: #0A0A0A;
+        }
+        .hero-card-count {
+            color: #D91624;
+            font-weight: 700;
+            letter-spacing: .08em;
+        }
+        .hero-gallery-controls {
+            position: absolute;
+            z-index: 8;
+            left: 8%;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .hero-gallery-arrow {
+            width: 50px;
+            height: 50px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(10,10,10,.18);
+            border-radius: 999px;
+            background: #fff;
+            transition: color .25s ease, background .25s ease, transform .25s ease;
+        }
+        .hero-gallery-arrow:hover { color: #fff; background: #D91624; transform: translateY(-2px); }
+        .hero-gallery-dots { display: flex; gap: 7px; margin-left: 6px; }
+        .hero-dot {
+            width: 8px;
+            height: 8px;
+            padding: 0;
+            border: 0;
+            border-radius: 999px;
+            background: #cbd5e1;
+            transition: width .3s ease, background .3s ease;
+        }
+        .hero-dot.is-active { width: 26px; background: #D91624; }
+        .footer-logo {
+            filter: grayscale(1) brightness(0) invert(1);
+            background: transparent;
+        }
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1);
+        }
+        .scroll-reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .project-frame {
+            border: 1px solid rgba(10, 10, 10, .18);
+            background: #fff;
+            padding: 8px;
+            box-shadow: 0 14px 40px rgba(10, 10, 10, .09);
+            transition: transform .45s ease, box-shadow .45s ease;
+        }
+        .project-frame:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 60px rgba(10, 10, 10, .18);
+        }
+        .project-frame img {
+            transition: transform .8s cubic-bezier(.2,.7,.2,1);
+        }
+        .project-frame:hover img {
+            transform: scale(1.06);
+        }
+        .project-tag {
+            border-top: 1px solid rgba(10, 10, 10, .12);
+            padding: 16px 14px 10px;
+        }
+        .service-card {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+            border-radius: 18px;
+            background: #fff;
+            box-shadow: 0 14px 36px rgba(10, 10, 10, .07);
+            transition: transform .45s ease, box-shadow .45s ease, border-color .45s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-9px);
+            border-color: rgba(217, 22, 36, .35);
+            box-shadow: 0 26px 60px rgba(10, 10, 10, .16);
+        }
+        .service-card-media {
+            position: relative;
+            height: 270px;
+            overflow: hidden;
+            background: #e5e7eb;
+        }
+        .service-card-media::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10,10,10,.48), transparent 55%);
+            pointer-events: none;
+        }
+        .service-card-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .8s cubic-bezier(.2,.7,.2,1);
+        }
+        .service-card:hover .service-card-media img { transform: scale(1.08); }
+        .service-card-number {
+            position: absolute;
+            z-index: 2;
+            left: 18px;
+            bottom: 16px;
+            color: #fff;
+            font-weight: 700;
+            letter-spacing: .14em;
+            font-size: .75rem;
+        }
+        .service-card-body {
+            flex: 1;
+            padding: 28px;
+        }
+        .project-filter {
+            padding: 10px 22px;
+            border: 1px solid #e5e7eb;
+            border-radius: 999px;
+            background: #f3f4f6;
+            color: #374151;
+            font-weight: 600;
+            transition: color .25s ease, background .25s ease, border-color .25s ease;
+        }
+        .project-filter:hover,
+        .project-filter.is-active {
+            border-color: #0A0A0A;
+            background: #0A0A0A;
+            color: #fff;
+        }
+        .project-gallery-card {
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+            border-radius: 18px;
+            background: #fff;
+            box-shadow: 0 14px 36px rgba(10,10,10,.08);
+            transition: transform .45s ease, box-shadow .45s ease;
+        }
+        .project-gallery-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 26px 60px rgba(10,10,10,.16);
+        }
+        .project-gallery-cover {
+            position: relative;
+            display: block;
+            width: 100%;
+            height: 350px;
+            overflow: hidden;
+            text-align: left;
+            background: #e5e7eb;
+        }
+        .project-gallery-cover::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10,10,10,.7), transparent 58%);
+        }
+        .project-gallery-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .8s cubic-bezier(.2,.7,.2,1);
+        }
+        .project-gallery-card:hover .project-gallery-cover img { transform: scale(1.065); }
+        .project-photo-count {
+            position: absolute;
+            z-index: 2;
+            top: 16px;
+            right: 16px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(255,255,255,.94);
+            color: #0A0A0A;
+            font-size: .75rem;
+            font-weight: 700;
+        }
+        .project-open-label {
+            position: absolute;
+            z-index: 2;
+            left: 20px;
+            bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #fff;
+            font-weight: 700;
+        }
+        .project-gallery-info { padding: 24px; }
+        .project-room-tag {
+            display: inline-flex;
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: #f3f4f6;
+            color: #6b7280;
+            font-size: .7rem;
+            font-weight: 700;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+        }
+        #project-lightbox { backdrop-filter: blur(8px); }
+        .lightbox-stage {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 0;
+            flex: 1;
+        }
+        .lightbox-stage img {
+            max-width: 100%;
+            max-height: calc(100vh - 220px);
+            object-fit: contain;
+            box-shadow: 0 24px 80px rgba(0,0,0,.45);
+        }
+        .lightbox-arrow {
+            position: absolute;
+            z-index: 2;
+            top: 50%;
+            width: 52px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 999px;
+            background: rgba(255,255,255,.94);
+            color: #0A0A0A;
+            transform: translateY(-50%);
+            transition: background .25s ease, color .25s ease;
+        }
+        .lightbox-arrow:hover { background: #D91624; color: #fff; }
+        .lightbox-arrow--prev { left: 14px; }
+        .lightbox-arrow--next { right: 14px; }
+        .lightbox-thumbs {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 12px 2px 4px;
+            scrollbar-width: thin;
+        }
+        .lightbox-thumb {
+            flex: 0 0 76px;
+            height: 54px;
+            overflow: hidden;
+            border: 2px solid transparent;
+            border-radius: 7px;
+            opacity: .55;
+            transition: opacity .2s ease, border-color .2s ease;
+        }
+        .lightbox-thumb img { width: 100%; height: 100%; object-fit: cover; }
+        .lightbox-thumb:hover,
+        .lightbox-thumb.is-active { opacity: 1; border-color: #D91624; }
+        body.lightbox-open { overflow: hidden; }
+        .blog-card-image { overflow: hidden; height: 300px; }
+        .blog-card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s ease; }
+        .blog-card:hover .blog-card-image img { transform: scale(1.06); }
+        .blog-landscape-card {
+            position: relative;
+            display: block;
+            width: 100%;
+            min-height: 420px;
+            overflow: hidden;
+            border-radius: 20px;
+            border: 1px solid #e5e7eb;
+            background: #fff;
+            text-align: left;
+            box-shadow: 0 18px 44px rgba(10,10,10,.13);
+            transition: transform .45s ease, box-shadow .45s ease;
+        }
+        .blog-landscape-card--wide { aspect-ratio: 16 / 6; }
+        .blog-landscape-card::after {
+            display: none;
+        }
+        .blog-landscape-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform .9s cubic-bezier(.2,.7,.2,1);
+        }
+        .blog-landscape-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 30px 70px rgba(10,10,10,.22);
+        }
+        .blog-landscape-card:hover img { transform: scale(1.055); }
+        .blog-landscape-title {
+            position: absolute;
+            z-index: 2;
+            left: 28px;
+            right: 28px;
+            bottom: 26px;
+            color: #fff;
+            font: 700 clamp(1.6rem, 2.8vw, 2.7rem)/1.12 'Playfair Display', serif;
+        }
+        .blog-card-copy {
+            position: static;
+            display: block;
+            padding: 22px 24px 24px;
+            color: #111827;
+        }
+        .blog-card-copy strong {
+            display: block;
+            font: 700 clamp(1.35rem, 2vw, 2rem)/1.15 'Playfair Display', serif;
+        }
+        .blog-card-copy small {
+            display: block;
+            margin-top: 9px;
+            color: #6b7280;
+            font-size: .88rem;
+            line-height: 1.45;
+        }
+        .blog-coming-card {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 420px;
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+            border-radius: 20px;
+            background: linear-gradient(145deg, #f9fafb, #eef0f4);
+            color: #9ca3af;
+            font: 700 1.5rem/1 'Playfair Display', serif;
+            box-shadow: 0 14px 36px rgba(10,10,10,.06);
+        }
+        .blog-coming-card::before {
+            content: "";
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            border: 1px solid rgba(217,22,36,.12);
+            border-radius: 50%;
+        }
+        .blog-coming-card span { position: relative; z-index: 1; }
+        .blog-reader-hero {
+            width: 100%;
+            height: min(58vh, 620px);
+            min-height: 380px;
+            object-fit: cover;
+            border-radius: 22px;
+            box-shadow: 0 24px 70px rgba(10,10,10,.16);
+        }
+        .blog-content { max-width: 860px; margin: 0 auto; }
+        .blog-content h2 { margin: 2.5rem 0 1rem; font-size: 2rem; line-height: 1.2; color: #111827; }
+        .blog-content h3 { margin: 2rem 0 .75rem; font-size: 1.35rem; color: #111827; }
+        .blog-content p { margin: 0 0 1.15rem; color: #4b5563; line-height: 1.85; }
+        .blog-content ul { margin: 1rem 0 1.5rem; padding-left: 1.4rem; list-style: disc; color: #4b5563; }
+        .blog-content li { margin-bottom: .75rem; line-height: 1.7; }
+        .blog-content strong { color: #111827; }
+        .manufacturing-video {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            border-radius: 24px;
+            background: #0A0A0A;
+            box-shadow: 0 30px 80px rgba(10,10,10,.24);
+        }
+        .manufacturing-video iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        .manufacturing-play-fallback {
+            position: absolute;
+            z-index: 4;
+            top: 18px;
+            right: 18px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border-radius: 999px;
+            background: #D91624;
+            color: #fff;
+            font-weight: 700;
+            box-shadow: 0 12px 28px rgba(0,0,0,.28);
+        }
+        .manufacturing-step {
+            position: relative;
+            padding-left: 76px;
+        }
+        .manufacturing-step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 52px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 999px;
+            background: #D91624;
+            color: #fff;
+            font-weight: 700;
+        }
+        .contact-map {
+            position: relative;
+            min-height: 460px;
+            overflow: hidden;
+            border-radius: 22px;
+            background: #e5e7eb;
+        }
+        .contact-map iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        .contact-field {
+            width: 100%;
+            border: 1px solid #d1d5db;
+            border-radius: 12px;
+            background: #fff;
+            padding: 14px 16px;
+            color: #111827;
+            transition: border-color .2s ease, box-shadow .2s ease;
+        }
+        .contact-field:focus {
+            outline: none;
+            border-color: #D91624;
+            box-shadow: 0 0 0 3px rgba(217,22,36,.12);
+        }
+        .instagram-track {
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: minmax(260px, 31%);
+            gap: 20px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding: 8px 4px 26px;
+        }
+        .instagram-track > a { scroll-snap-align: start; }
+        .review-card { position: relative; overflow: hidden; }
+        .review-card::before {
+            content: "\201C";
+            position: absolute;
+            right: 22px;
+            top: -22px;
+            color: rgba(217, 22, 36, .10);
+            font: 140px/1 'Playfair Display', serif;
+        }
+        .heading-accent { position: relative; display: inline-block; }
+        .heading-accent::after {
+            content: "";
+            display: block;
+            width: 72px;
+            height: 3px;
+            margin-top: 16px;
+            background: linear-gradient(90deg, #0A0A0A, #1D4ED8);
+            transform-origin: left;
+            animation: lineGrow 1.2s ease both;
+        }
+        @keyframes lineGrow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+        
+        /* Mobile specific adjustments */
+        @media (max-width: 768px) {
+            .hero-content-grid { grid-template-columns: 1fr; gap: 42px; }
+            .hero-gallery { min-height: 440px; }
+            .hero-card { left: 5%; width: 88%; height: 79%; }
+            .hero-card-frame { border-width: 6px; }
+            .hero-card-frame img { height: calc(100% - 66px); }
+            .hero-card-caption { height: 66px; padding: 0 14px; }
+            .hero-gallery-controls { left: 5%; }
+            .instagram-track { grid-auto-columns: 84%; }
+            .project-frame:hover { transform: none; }
+            .service-card-media { height: 245px; }
+            .service-card:hover { transform: none; }
+            .project-gallery-cover { height: 300px; }
+            .project-gallery-card:hover { transform: none; }
+            .lightbox-stage img { max-height: calc(100vh - 245px); }
+            .lightbox-arrow { width: 44px; height: 44px; }
+            .lightbox-arrow--prev { left: 5px; }
+            .lightbox-arrow--next { right: 5px; }
+            .blog-landscape-card { min-height: 370px; }
+            .blog-landscape-card img { height: 220px; }
+            .blog-coming-card { min-height: 370px; }
+            .blog-landscape-card--wide { aspect-ratio: auto; }
+            .blog-landscape-title { left: 20px; right: 20px; bottom: 19px; }
+            .blog-card-copy { padding: 19px 20px 22px; }
+            .blog-reader-hero { min-height: 280px; height: 42vh; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+            .scroll-reveal { opacity: 1; transform: none; }
+            #three-particle-background { display: none; }
+        }
+    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "InteriorDesignBusiness",
+      "name": "Olivel Designs",
+      "url": "https://oliveldesigns.com/",
+      "logo": "https://oliveldesigns.com/assets/images/brand/olivel-designs-logo.png",
+      "telephone": "+91-733-966-6149",
+      "email": "info@oliveldesigns.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "No. 2, Balaji Nagar Main Road, Kolathur",
+        "addressLocality": "Chennai",
+        "postalCode": "600099",
+        "addressRegion": "Tamil Nadu",
+        "addressCountry": "IN"
+      },
+      "areaServed": ["Chennai", "Tamil Nadu"],
+      "founder": {
+        "@type": "Person",
+        "name": "P. Nithya Kumari",
+        "jobTitle": "Founder and Owner",
+        "image": "https://oliveldesigns.com/assets/images/brand/founder-nithya-kumari.jpeg",
+        "sameAs": "https://www.linkedin.com/in/nithya-kumari-palani-480100227/"
+      },
+      "sameAs": [
+        "https://www.instagram.com/oliveldesigns/",
+        "https://www.facebook.com/oliveldesigns",
+        "https://www.linkedin.com/company/olivel-design-studio/",
+        "https://www.youtube.com/@OlivelDesignsofficial"
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Full Home Interior Design in Chennai: What Is Included and What Is Not Included?",
+      "description": "A practical guide for Chennai homeowners explaining the common inclusions and exclusions in a full-home residential interior design and execution package.",
+      "image": "https://oliveldesigns.com/assets/images/blog/full-home-interior-design-chennai.jpg",
+      "datePublished": "2026-06-21",
+      "dateModified": "2026-06-21",
+      "author": { "@type": "Organization", "name": "Olivel Designs" },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Olivel Designs",
+        "logo": { "@type": "ImageObject", "url": "https://oliveldesigns.com/assets/images/brand/olivel-designs-logo.png" }
+      },
+      "mainEntityOfPage": "https://oliveldesigns.com/#blog",
+      "articleSection": ["Full-Home Interiors", "Interior Design Chennai", "Interior Execution"]
+    }
+    </script>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+    <div id="three-particle-background" aria-hidden="true"></div>
+
+    <!-- Topbar (Social & Contact) -->
+    <div class="bg-brand-dark text-white text-xs py-2 px-6 flex justify-between items-center hidden md:flex">
+        <div class="flex space-x-4">
+            <a href="tel:+917339666149" class="flex items-center gap-1 hover:text-brand-red transition"><i class="ph ph-phone"></i> +91 733 966 6149</a>
+            <a href="mailto:info@oliveldesigns.com" class="flex items-center gap-1 hover:text-brand-red transition"><i class="ph ph-envelope"></i> info@oliveldesigns.com</a>
+            <span class="flex items-center gap-1"><i class="ph ph-map-pin"></i> Chennai, Tamil Nadu</span>
+        </div>
+        <div class="flex space-x-4 items-center">
+            <span class="text-gray-400">Follow Us:</span>
+            <a href="https://www.instagram.com/oliveldesigns/" target="_blank" rel="noopener" aria-label="Olivel Designs on Instagram" class="hover:text-brand-red transition"><i class="ph-fill ph-instagram-logo text-lg"></i></a>
+            <a href="https://www.facebook.com/oliveldesigns" target="_blank" rel="noopener" aria-label="Olivel Designs on Facebook" class="hover:text-brand-red transition"><i class="ph-fill ph-facebook-logo text-lg"></i></a>
+            <a href="https://www.linkedin.com/company/olivel-design-studio/" target="_blank" rel="noopener" aria-label="Olivel Designs on LinkedIn" class="hover:text-brand-red transition"><i class="ph-fill ph-linkedin-logo text-lg"></i></a>
+            <a href="https://www.youtube.com/@OlivelDesignsofficial" target="_blank" rel="noopener" aria-label="Olivel Designs on YouTube" class="hover:text-brand-red transition"><i class="ph-fill ph-youtube-logo text-lg"></i></a>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24">
+                <!-- Logo -->
+                <div class="flex-shrink-0 cursor-pointer" onclick="navigate('home')">
+                    <img src="assets/images/brand/olivel-designs-logo.png" alt="Olivel Designs - Interior Design and Execution" class="h-20 w-auto object-contain">
+                </div>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden lg:flex space-x-5">
+                    <button data-page="home" onclick="navigate('home')" class="nav-link text-brand-red hover:text-brand-red font-semibold transition">Home</button>
+                    <button data-page="about" onclick="navigate('about')" class="nav-link text-gray-800 hover:text-brand-red font-medium transition">About Us</button>
+                    <button data-page="services" onclick="navigate('services')" class="nav-link text-gray-800 hover:text-brand-red font-medium transition">Services</button>
+                    <button data-page="portfolio" onclick="navigate('portfolio')" class="nav-link text-gray-800 hover:text-brand-red font-medium transition">Projects</button>
+                    <button data-page="blog" onclick="navigate('blog')" class="nav-link text-gray-800 hover:text-brand-red font-medium transition">Blog</button>
+                    <button data-page="manufacturing" onclick="navigate('manufacturing')" class="nav-link text-gray-800 hover:text-brand-red font-medium transition">Manufacturing</button>
+                    <button data-page="contact" onclick="navigate('contact')" class="nav-link text-gray-800 hover:text-brand-red font-medium transition">Contact</button>
+                </nav>
+
+                <!-- CTA Button -->
+                <div class="hidden 2xl:flex">
+                    <button onclick="navigate('contact')" class="bg-brand-red hover:bg-red-700 text-white px-6 py-2 rounded-full font-medium transition shadow-lg shadow-red-500/30">
+                        Get Free Quote
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu" class="text-gray-800 hover:text-brand-red focus:outline-none">
+                        <i class="ph ph-list text-3xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-100 absolute w-full shadow-xl">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <button onclick="navigate('home'); toggleMobileMenu()" class="block w-full text-left px-3 py-3 text-base font-medium text-gray-800 hover:bg-gray-50 hover:text-brand-red rounded-md">Home</button>
+                <button onclick="navigate('about'); toggleMobileMenu()" class="block w-full text-left px-3 py-3 text-base font-medium text-gray-800 hover:bg-gray-50 hover:text-brand-red rounded-md">About Us</button>
+                <button onclick="navigate('services'); toggleMobileMenu()" class="block w-full text-left px-3 py-3 text-base font-medium text-gray-800 hover:bg-gray-50 hover:text-brand-red rounded-md">Services</button>
+                <button onclick="navigate('portfolio'); toggleMobileMenu()" class="block w-full text-left px-3 py-3 text-base font-medium text-gray-800 hover:bg-gray-50 hover:text-brand-red rounded-md">Portfolio</button>
+                <button onclick="navigate('blog'); toggleMobileMenu()" class="block w-full text-left px-3 py-3 text-base font-medium text-gray-800 hover:bg-gray-50 hover:text-brand-red rounded-md">Blog</button>
+                <button onclick="navigate('manufacturing'); toggleMobileMenu()" class="block w-full text-left px-3 py-3 text-base font-medium text-gray-800 hover:bg-gray-50 hover:text-brand-red rounded-md">Manufacturing</button>
+                <button onclick="navigate('contact'); toggleMobileMenu()" class="block w-full text-left px-3 py-3 text-base font-medium text-gray-800 hover:bg-gray-50 hover:text-brand-red rounded-md">Contact</button>
+                <button onclick="navigate('contact'); toggleMobileMenu()" class="mt-4 w-full bg-brand-red text-white px-6 py-3 rounded-md font-medium text-center">Get Free Quote</button>
+                <div class="flex items-center justify-center gap-5 pt-4 text-gray-700" aria-label="Olivel Designs social media">
+                    <a href="https://www.instagram.com/oliveldesigns/" target="_blank" rel="noopener" aria-label="Instagram"><i class="ph-fill ph-instagram-logo text-2xl"></i></a>
+                    <a href="https://www.facebook.com/oliveldesigns" target="_blank" rel="noopener" aria-label="Facebook"><i class="ph-fill ph-facebook-logo text-2xl"></i></a>
+                    <a href="https://www.linkedin.com/company/olivel-design-studio/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="ph-fill ph-linkedin-logo text-2xl"></i></a>
+                    <a href="https://www.youtube.com/@OlivelDesignsofficial" target="_blank" rel="noopener" aria-label="YouTube"><i class="ph-fill ph-youtube-logo text-2xl"></i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-grow relative">
+
+        <!-- ================= HOME PAGE ================= -->
+        <div id="page-home" class="page-section block fade-in">
+            
+            <!-- Hero Section with Interactive Project Cards -->
+            <section class="relative min-h-[760px] flex items-center overflow-hidden bg-gray-50 py-14 md:py-20">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                    <div class="hero-content-grid">
+                        <div>
+                        <div class="inline-block bg-brand-red/10 text-brand-red px-3 py-1 rounded-full text-sm font-semibold mb-6 border border-brand-red/20">
+                            Residential Interior Design &amp; Execution in Chennai
+                        </div>
+                        <h1 class="text-5xl md:text-6xl font-bold text-gray-900 leading-tight mb-6">
+                            Beautiful homes, <span class="text-brand-red">designed and built</span> around you.
+                        </h1>
+                        <p class="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
+                            Olivel Designs brings space planning, interior design, custom manufacturing and on-site execution together for a clear, coordinated home interior journey.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button onclick="navigate('portfolio')" class="bg-brand-red hover:bg-red-700 text-white px-8 py-4 rounded-full font-medium transition shadow-xl shadow-red-500/20 flex items-center justify-center gap-2">
+                                Explore Our Work <i class="ph ph-arrow-right"></i>
+                            </button>
+                            <button onclick="navigate('manufacturing')" class="bg-white hover:bg-gray-50 text-gray-900 border border-gray-200 px-8 py-4 rounded-full font-medium transition shadow-sm flex items-center justify-center gap-2">
+                                <i class="ph ph-factory"></i> Our Manufacturing Unit
+                            </button>
+                        </div>
+                        
+                        <!-- Trust Indicators -->
+                        <div class="mt-10 grid grid-cols-3 gap-5 border-t border-gray-200 pt-6">
+                            <div>
+                                <h4 class="text-3xl font-bold text-gray-900">21+</h4>
+                                <p class="text-sm text-gray-500">Years of Expertise</p>
+                            </div>
+                            <div>
+                                <h4 class="text-3xl font-bold text-gray-900">2010</h4>
+                                <p class="text-sm text-gray-500">Studio Established</p>
+                            </div>
+                            <div>
+                                <h4 class="text-3xl font-bold text-gray-900">100%</h4>
+                                <p class="text-sm text-gray-500">Design-to-Build Approach</p>
+                            </div>
+                        </div>
+                        </div>
+
+                        <div class="hero-gallery" aria-label="Featured Olivel Designs interior projects">
+                            <button type="button" class="hero-card is-active" data-hero-card="0" aria-label="View next project after Mukesh Residence">
+                                <span class="hero-card-frame">
+                                    <img src="assets/images/projects/mukesh/golden-opulence.webp" alt="Golden living room at Mukesh Residence in Poonamallee">
+                                    <span class="hero-card-caption"><span><strong class="block font-serif text-xl">Mukesh Residence</strong><small class="text-gray-500">Golden Opulence · Poonamallee</small></span><span class="hero-card-count">01 / 05</span></span>
+                                </span>
+                            </button>
+                            <button type="button" class="hero-card is-next" data-hero-card="1" aria-label="Show AVM Asta Sri project">
+                                <span class="hero-card-frame">
+                                    <img src="assets/images/projects/avm-asta-sri/cover.webp" alt="Complete home interior at AVM Asta Sri in Vadapalani">
+                                    <span class="hero-card-caption"><span><strong class="block font-serif text-xl">AVM Asta Sri</strong><small class="text-gray-500">Full-Home Interior · Vadapalani</small></span><span class="hero-card-count">02 / 05</span></span>
+                                </span>
+                            </button>
+                            <button type="button" class="hero-card is-behind" data-hero-card="2" aria-label="Show Mythili Residence project">
+                                <span class="hero-card-frame">
+                                    <img src="assets/images/projects/mythili/cover.webp" alt="Customized 3BHK interior at Mythili Residence">
+                                    <span class="hero-card-caption"><span><strong class="block font-serif text-xl">Mythili Residence</strong><small class="text-gray-500">Customized 3BHK · Chennai</small></span><span class="hero-card-count">03 / 05</span></span>
+                                </span>
+                            </button>
+                            <button type="button" class="hero-card" data-hero-card="3" aria-label="Show Subhash Residence project">
+                                <span class="hero-card-frame">
+                                    <img src="assets/images/projects/subhash-madipakkam/living.webp" alt="Living room interior at Subhash Residence in Madipakkam">
+                                    <span class="hero-card-caption"><span><strong class="block font-serif text-xl">Subhash Residence</strong><small class="text-gray-500">Living Interior · Madipakkam</small></span><span class="hero-card-count">04 / 05</span></span>
+                                </span>
+                            </button>
+                            <button type="button" class="hero-card is-prev" data-hero-card="4" aria-label="Show Nishanth Residence project">
+                                <span class="hero-card-frame">
+                                    <img src="assets/images/projects/nishanth/cover.webp" alt="Custom home interior at Nishanth Residence in Chennai">
+                                    <span class="hero-card-caption"><span><strong class="block font-serif text-xl">Nishanth Residence</strong><small class="text-gray-500">Custom Interiors · Chennai</small></span><span class="hero-card-count">05 / 05</span></span>
+                                </span>
+                            </button>
+
+                            <div class="hero-gallery-controls">
+                                <button type="button" id="hero-prev" class="hero-gallery-arrow" aria-label="Previous interior project"><i class="ph ph-arrow-left text-xl"></i></button>
+                                <button type="button" id="hero-next" class="hero-gallery-arrow" aria-label="Next interior project"><i class="ph ph-arrow-right text-xl"></i></button>
+                                <div class="hero-gallery-dots" aria-label="Choose featured project">
+                                    <button type="button" class="hero-dot is-active" data-hero-dot="0" aria-label="Show project 1"></button>
+                                    <button type="button" class="hero-dot" data-hero-dot="1" aria-label="Show project 2"></button>
+                                    <button type="button" class="hero-dot" data-hero-dot="2" aria-label="Show project 3"></button>
+                                    <button type="button" class="hero-dot" data-hero-dot="3" aria-label="Show project 4"></button>
+                                    <button type="button" class="hero-dot" data-hero-dot="4" aria-label="Show project 5"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Why Choose Us / Services -->
+            <section class="py-20 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-3xl mx-auto mb-16">
+                        <h2 class="text-4xl font-bold text-gray-900 mb-4">The Olivel Advantage</h2>
+                        <p class="text-gray-600 text-lg">We specialize in comprehensive residential interior design and execution. Our integrated approach supports clearer coordination, consistent finishes and accountable delivery in Chennai.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                        <!-- Card 1 -->
+                        <div class="bg-gray-50 rounded-2xl p-8 hover:shadow-xl transition-shadow duration-300 border border-gray-100 group">
+                            <div class="w-14 h-14 bg-brand-red/10 text-brand-red rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                                <i class="ph ph-ruler text-3xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 text-gray-900">Bespoke Design Concepts</h3>
+                            <p class="text-gray-600 leading-relaxed">Tailor-made designs that reflect your lifestyle. Our design team develops thoughtful space plans and visualizations before execution begins.</p>
+                        </div>
+                        
+                        <!-- Card 2 -->
+                        <div class="bg-gray-50 rounded-2xl p-8 hover:shadow-xl transition-shadow duration-300 border border-gray-100 group relative overflow-hidden">
+                            <div class="absolute top-0 right-0 bg-brand-red text-white text-xs font-bold px-3 py-1 rounded-bl-lg z-10">CORE STRENGTH</div>
+                            <div class="w-14 h-14 bg-brand-red/10 text-brand-red rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform relative z-10">
+                                <i class="ph ph-hammer text-3xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 text-gray-900 relative z-10">Own Manufacturing Unit</h3>
+                            <p class="text-gray-600 leading-relaxed relative z-10">Our own manufacturing unit gives the team closer control over custom woodwork, dimensions, finishes and production coordination.</p>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="bg-gray-50 rounded-2xl p-8 hover:shadow-xl transition-shadow duration-300 border border-gray-100 group">
+                            <div class="w-14 h-14 bg-brand-red/10 text-brand-red rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                                <i class="ph ph-check-circle text-3xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 text-gray-900">Flawless Execution</h3>
+                            <p class="text-gray-600 leading-relaxed">End-to-end project coordination. Our team aligns approved designs, production and on-site installation through each stage.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Highlights / Mini Portfolio -->
+            <section class="py-20 bg-gray-900 text-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                        <div class="max-w-2xl">
+                            <h2 class="text-4xl font-bold mb-4">Curated Living Spaces</h2>
+                            <p class="text-gray-400">Explore a glimpse of our premium residential projects executed across Chennai and Tamil Nadu.</p>
+                        </div>
+                        <button onclick="navigate('portfolio')" class="mt-6 md:mt-0 text-brand-red hover:text-white transition flex items-center gap-2 font-medium">
+                            View Full Portfolio <i class="ph ph-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <article class="project-frame text-gray-900">
+                            <div class="overflow-hidden h-80"><img src="assets/images/projects/mukesh/golden-opulence.webp" alt="Mukesh residence living room interior designed by Olivel Designs" class="w-full h-full object-cover"></div>
+                            <div class="project-tag"><h3 class="text-xl font-bold">Mukesh Residence</h3><p class="text-sm text-gray-500 mt-1">Golden Opulence · Poonamallee</p></div>
+                        </article>
+                        <article class="project-frame text-gray-900">
+                            <div class="overflow-hidden h-80"><img src="assets/images/projects/jay-giri-avadi/kitchen.webp" alt="Jay Giri Avadi modular kitchen by Olivel Designs" class="w-full h-full object-cover"></div>
+                            <div class="project-tag"><h3 class="text-xl font-bold">Jay Giri Residence</h3><p class="text-sm text-gray-500 mt-1">Modular Kitchen · Avadi</p></div>
+                        </article>
+                        <article class="project-frame text-gray-900">
+                            <div class="overflow-hidden h-80"><img src="assets/images/projects/avm-asta-sri/living-dining.webp" alt="AVM Asta Sri living and dining interior by Olivel Designs" class="w-full h-full object-cover"></div>
+                            <div class="project-tag"><h3 class="text-xl font-bold">AVM Asta Sri</h3><p class="text-sm text-gray-500 mt-1">Living &amp; Dining · Vadapalani</p></div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Instagram Showcase -->
+            <section class="py-20 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+                        <div><span class="text-brand-red font-bold tracking-wider uppercase text-sm">@oliveldesigns</span><h2 class="text-4xl font-bold mt-2 heading-accent">Design stories on Instagram</h2></div>
+                        <a href="https://www.instagram.com/oliveldesigns/" target="_blank" rel="noopener" class="text-brand-red font-semibold flex items-center gap-2">Follow our work <i class="ph ph-instagram-logo text-xl"></i></a>
+                    </div>
+                    <div class="instagram-track hide-scrollbar" aria-label="Olivel Designs Instagram project carousel">
+                        <a href="https://www.instagram.com/oliveldesigns/" target="_blank" rel="noopener" class="group relative overflow-hidden rounded-2xl aspect-[4/5]"><img src="assets/images/projects/mythili/cover.webp" alt="Mythili residence interior" class="w-full h-full object-cover transition duration-700 group-hover:scale-110"><span class="absolute inset-x-4 bottom-4 bg-white/95 text-gray-900 rounded-xl p-3 font-semibold"><i class="ph-fill ph-instagram-logo text-brand-red"></i> Mythili Residence</span></a>
+                        <a href="https://www.instagram.com/oliveldesigns/" target="_blank" rel="noopener" class="group relative overflow-hidden rounded-2xl aspect-[4/5]"><img src="assets/images/projects/nishanth/cover.webp" alt="Nishanth residence interior" class="w-full h-full object-cover transition duration-700 group-hover:scale-110"><span class="absolute inset-x-4 bottom-4 bg-white/95 text-gray-900 rounded-xl p-3 font-semibold"><i class="ph-fill ph-instagram-logo text-brand-red"></i> Nishanth Residence</span></a>
+                        <a href="https://www.instagram.com/oliveldesigns/" target="_blank" rel="noopener" class="group relative overflow-hidden rounded-2xl aspect-[4/5]"><img src="assets/images/projects/balaji/master-bedroom.webp" alt="Balaji residence master bedroom interior" class="w-full h-full object-cover transition duration-700 group-hover:scale-110"><span class="absolute inset-x-4 bottom-4 bg-white/95 text-gray-900 rounded-xl p-3 font-semibold"><i class="ph-fill ph-instagram-logo text-brand-red"></i> Balaji Residence</span></a>
+                        <a href="https://www.instagram.com/oliveldesigns/" target="_blank" rel="noopener" class="group relative overflow-hidden rounded-2xl aspect-[4/5]"><img src="assets/images/projects/kkd/pooja.webp" alt="KKD residence pooja unit interior" class="w-full h-full object-cover transition duration-700 group-hover:scale-110"><span class="absolute inset-x-4 bottom-4 bg-white/95 text-gray-900 rounded-xl p-3 font-semibold"><i class="ph-fill ph-instagram-logo text-brand-red"></i> KKD Residence</span></a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Client Reviews -->
+            <section class="py-20 bg-gray-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-3xl mx-auto mb-12"><span class="text-brand-red font-bold tracking-wider uppercase text-sm">Google Reviews</span><h2 class="text-4xl font-bold mt-2">Words from our homeowners</h2><p class="text-gray-600 mt-4">Real experiences from residential interior projects completed by the Olivel team.</p></div>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <article class="review-card bg-white rounded-2xl border border-gray-100 p-8 shadow-sm"><div class="text-amber-400 text-xl mb-5" aria-label="5 out of 5 stars">★★★★★</div><p class="relative text-gray-700 text-lg leading-relaxed">“It was an amazing experience working with Olivel Designs for our 3BHK with lots of customization. The team delivered in less than a month with quality work.”</p><div class="mt-6 font-bold">Sagaya Mythili</div><div class="text-sm text-gray-500">Homeowner · Google review</div></article>
+                        <article class="review-card bg-white rounded-2xl border border-gray-100 p-8 shadow-sm"><div class="text-amber-400 text-xl mb-5" aria-label="5 out of 5 stars">★★★★★</div><p class="relative text-gray-700 text-lg leading-relaxed">“The transformation brought a refreshing new look, blending functionality with aesthetics. Every detail was thoughtfully designed and executed.”</p><div class="mt-6 font-bold">Jaya Giri</div><div class="text-sm text-gray-500">Homeowner · Google review</div></article>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= ABOUT US PAGE ================= -->
+        <div id="page-about" class="page-section hidden fade-in bg-white py-20">
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-labelledby="about-title">
+                <div class="grid lg:grid-cols-2 gap-16 items-end mb-16">
+                    <div>
+                        <span class="text-brand-red font-bold tracking-wider uppercase text-sm">Our Story</span>
+                        <h1 id="about-title" class="text-5xl md:text-6xl font-bold text-gray-900 mt-3 leading-tight">Design with imagination. Execution with ownership.</h1>
+                    </div>
+                    <p class="text-xl text-gray-600 leading-relaxed">Olivel Designs is a Chennai-based residential interior design and execution studio combining thoughtful planning, custom manufacturing and coordinated on-site delivery under one team.</p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-14 items-center">
+                    <div class="project-frame">
+                        <div class="overflow-hidden"><img src="assets/images/projects/subhash-madipakkam/living.webp" alt="Residential living room designed and executed by Olivel Designs in Chennai" class="w-full h-[580px] object-cover"></div>
+                        <div class="project-tag"><h2 class="text-xl font-bold">Designed for real living</h2><p class="text-gray-500 text-sm mt-1">Residential interior design and execution &middot; Chennai</p></div>
+                    </div>
+                    <div>
+                        <span class="text-brand-red font-semibold">Established in Chennai in 2010</span>
+                        <h2 class="text-4xl font-bold text-gray-900 mt-3 mb-6">From a design idea to a home that feels complete</h2>
+                        <p class="text-gray-600 mb-5 leading-relaxed">Olivel Designs specializes in residential interior design and execution across Chennai and Tamil Nadu. Every project begins with the people who will live in the space: their routines, storage needs, preferences and ambitions for the home.</p>
+                        <p class="text-gray-600 mb-8 leading-relaxed">Our integrated model connects space planning and visual direction with custom production and installation. With our own manufacturing unit, the team can coordinate made-to-fit kitchens, wardrobes, storage, wall units and furniture more closely from approved drawing to final placement.</p>
+                        <div class="grid grid-cols-3 gap-4 border-t border-gray-200 pt-7">
+                            <div><strong class="block font-serif text-3xl text-brand-red">21+</strong><span class="text-sm text-gray-500">Years of expertise</span></div>
+                            <div><strong class="block font-serif text-3xl text-brand-red">2010</strong><span class="text-sm text-gray-500">Studio established</span></div>
+                            <div><strong class="block font-serif text-3xl text-brand-red">1</strong><span class="text-sm text-gray-500">Integrated team</span></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-24" aria-label="Founder profile: P. Nithya Kumari">
+                <div class="bg-brand-dark text-white rounded-3xl overflow-hidden shadow-2xl">
+                    <div class="grid lg:grid-cols-12">
+                        <div class="lg:col-span-5 relative min-h-[620px] bg-gray-900">
+                            <img src="assets/images/brand/founder-nithya-kumari.jpeg" alt="P. Nithya Kumari, Founder and Owner of Olivel Designs" class="absolute inset-0 w-full h-full object-cover object-top">
+                            <div class="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-black/90 via-black/50 to-transparent lg:hidden">
+                                <p class="text-brand-red font-bold uppercase tracking-widest text-sm">Founder &amp; Owner</p>
+                                <h2 class="text-3xl font-bold mt-1">P. Nithya Kumari</h2>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-7 p-8 md:p-14 lg:p-16 flex flex-col justify-center">
+                            <span class="hidden lg:block text-brand-red font-bold uppercase tracking-widest text-sm">Founder &amp; Owner</span>
+                            <h2 class="hidden lg:block text-5xl font-bold mt-3 mb-4">P. Nithya Kumari</h2>
+                            <p class="text-xl text-gray-300 mb-7">B.Tech in Civil Engineering &middot; MBA &middot; 21+ years of multidisciplinary expertise</p>
+                            <p class="text-gray-300 leading-relaxed mb-5">P. Nithya Kumari founded Olivel Designs with a clear purpose: to make residential interiors more personal, practical and accountable from the first conversation through execution.</p>
+                            <p class="text-gray-300 leading-relaxed mb-8">Her civil engineering foundation brings technical discipline to planning and site coordination, while her management background supports a structured project approach. She leads the studio's design direction, client relationships and execution philosophy with close attention to how each family will actually use its home.</p>
+
+                            <div class="grid sm:grid-cols-2 gap-4 mb-9">
+                                <div class="rounded-xl border border-white/10 bg-white/5 p-5"><i class="ph ph-compass text-2xl text-brand-red"></i><h3 class="font-bold text-lg mt-3 mb-1">Design Direction</h3><p class="text-sm text-gray-400">Personalized concepts grounded in function, proportion and everyday living.</p></div>
+                                <div class="rounded-xl border border-white/10 bg-white/5 p-5"><i class="ph ph-handshake text-2xl text-brand-red"></i><h3 class="font-bold text-lg mt-3 mb-1">Project Ownership</h3><p class="text-sm text-gray-400">Clear coordination across clients, designers, production and site teams.</p></div>
+                            </div>
+
+                            <div class="flex flex-col sm:flex-row gap-4">
+                                <a href="https://www.linkedin.com/in/nithya-kumari-palani-480100227/" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 bg-[#0A66C2] hover:bg-[#084f96] text-white px-7 py-3 rounded-full font-semibold transition"><i class="ph-fill ph-linkedin-logo text-xl"></i> View LinkedIn Profile</a>
+                                <button type="button" onclick="navigate('contact')" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-brand-red hover:text-brand-red px-7 py-3 rounded-full font-semibold transition">Connect with Olivel <i class="ph ph-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-24" aria-labelledby="approach-title">
+                <div class="text-center max-w-3xl mx-auto mb-14"><span class="text-brand-red font-bold tracking-wider uppercase text-sm">What Guides Us</span><h2 id="approach-title" class="text-4xl font-bold mt-3">A considered way of creating homes</h2></div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <article class="bg-gray-50 border border-gray-100 rounded-2xl p-8"><span class="text-brand-red font-serif text-4xl">01</span><h3 class="text-2xl font-bold mt-5 mb-3">Listen before designing</h3><p class="text-gray-600 leading-relaxed">We understand the household, routines, priorities and budget before shaping a visual direction.</p></article>
+                    <article class="bg-gray-50 border border-gray-100 rounded-2xl p-8"><span class="text-brand-red font-serif text-4xl">02</span><h3 class="text-2xl font-bold mt-5 mb-3">Make every detail useful</h3><p class="text-gray-600 leading-relaxed">Beauty and practicality are planned together, from movement and lighting to storage and maintenance.</p></article>
+                    <article class="bg-gray-50 border border-gray-100 rounded-2xl p-8"><span class="text-brand-red font-serif text-4xl">03</span><h3 class="text-2xl font-bold mt-5 mb-3">Stay responsible through execution</h3><p class="text-gray-600 leading-relaxed">Design, manufacturing and installation remain coordinated so decisions carry through to the finished home.</p></article>
+                </div>
+            </section>
+
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-24">
+                <div class="rounded-3xl border border-gray-200 p-8 md:p-12">
+                    <div class="grid md:grid-cols-3 gap-8 md:divide-x md:divide-gray-200">
+                        <div class="md:pr-8"><span class="text-brand-red font-bold">21+ years</span><h3 class="text-2xl font-bold mt-2">Experience before establishment</h3><p class="text-gray-600 mt-3">A multidisciplinary foundation spanning design thinking, civil engineering and project leadership.</p></div>
+                        <div class="md:px-8"><span class="text-brand-red font-bold">2010</span><h3 class="text-2xl font-bold mt-2">Olivel Designs established</h3><p class="text-gray-600 mt-3">The Chennai studio begins its journey in residential interior design and coordinated execution.</p></div>
+                        <div class="md:pl-8"><span class="text-brand-red font-bold">Today</span><h3 class="text-2xl font-bold mt-2">Integrated design-to-build</h3><p class="text-gray-600 mt-3">Our own manufacturing unit supports closer control over custom production and project delivery.</p></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+        <!-- ================= SERVICES PAGE ================= -->
+        <div id="page-services" class="page-section hidden fade-in py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-brand-red font-bold tracking-wider uppercase text-sm">What We Do</span>
+                    <h1 class="text-5xl font-bold text-gray-900 mb-6 mt-2">Interior services, from first idea to final handover</h1>
+                    <p class="text-xl text-gray-600">One coordinated team for design, custom manufacturing and execution across Chennai and Tamil Nadu.</p>
+                </div>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <article class="service-card">
+                        <div class="service-card-media"><img src="assets/images/projects/avm-asta-sri/cover.webp" alt="Complete residential interior designed and executed by Olivel Designs" loading="lazy"><span class="service-card-number">01 / FULL HOME</span></div>
+                        <div class="service-card-body"><div class="flex items-center justify-between gap-4"><i class="ph ph-house-line text-4xl text-brand-red"></i><span class="text-xs font-bold tracking-widest text-gray-400">END TO END</span></div><h2 class="text-2xl font-bold mt-5 mb-3">Full-Home Interiors</h2><p class="text-gray-600 leading-relaxed">Space planning, material selection, furniture layouts, lighting ideas, custom storage and coordinated execution for complete residences.</p></div>
+                    </article>
+                    <article class="service-card">
+                        <div class="service-card-media"><img src="assets/images/projects/balaji/kitchen.webp" alt="Custom modular kitchen by Olivel Designs in Chennai" loading="lazy"><span class="service-card-number">02 / KITCHENS</span></div>
+                        <div class="service-card-body"><div class="flex items-center justify-between gap-4"><i class="ph ph-cooking-pot text-4xl text-brand-red"></i><span class="text-xs font-bold tracking-widest text-gray-400">MADE TO FIT</span></div><h2 class="text-2xl font-bold mt-5 mb-3">Modular Kitchens</h2><p class="text-gray-600 leading-relaxed">Ergonomic kitchen layouts with practical work zones, organized storage, durable finishes and made-to-measure cabinetry.</p></div>
+                    </article>
+                    <article class="service-card">
+                        <div class="service-card-media"><img src="assets/images/projects/jay-giri-avadi/wardrobe.webp" alt="Custom wardrobe and storage interior by Olivel Designs" loading="lazy"><span class="service-card-number">03 / STORAGE</span></div>
+                        <div class="service-card-body"><div class="flex items-center justify-between gap-4"><i class="ph ph-cabinet text-4xl text-brand-red"></i><span class="text-xs font-bold tracking-widest text-gray-400">CUSTOM BUILT</span></div><h2 class="text-2xl font-bold mt-5 mb-3">Wardrobes &amp; Storage</h2><p class="text-gray-600 leading-relaxed">Custom wardrobes, lofts, TV units, study units and storage planned around room dimensions and everyday routines.</p></div>
+                    </article>
+                    <article class="service-card">
+                        <div class="service-card-media"><img src="assets/images/projects/kkd/pooja.webp" alt="Custom-made feature and pooja unit by Olivel Designs" loading="lazy"><span class="service-card-number">04 / FURNITURE</span></div>
+                        <div class="service-card-body"><div class="flex items-center justify-between gap-4"><i class="ph ph-armchair text-4xl text-brand-red"></i><span class="text-xs font-bold tracking-widest text-gray-400">OWN UNIT</span></div><h2 class="text-2xl font-bold mt-5 mb-3">Custom Furniture &amp; Features</h2><p class="text-gray-600 leading-relaxed">Purpose-built furniture, pooja units and feature elements manufactured to suit the approved design language, proportions and finish palette.</p></div>
+                    </article>
+                    <article class="service-card">
+                        <div class="service-card-media"><img src="assets/images/projects/mukesh/living.webp" alt="Styled living room interior by Olivel Designs" loading="lazy"><span class="service-card-number">05 / RENOVATION</span></div>
+                        <div class="service-card-body"><div class="flex items-center justify-between gap-4"><i class="ph ph-paint-brush-broad text-4xl text-brand-red"></i><span class="text-xs font-bold tracking-widest text-gray-400">REFRESH</span></div><h2 class="text-2xl font-bold mt-5 mb-3">Renovation &amp; Styling</h2><p class="text-gray-600 leading-relaxed">Thoughtful upgrades for existing homes, including layout improvements, finishes, carpentry, furnishing and visual refreshes.</p></div>
+                    </article>
+                    <article class="service-card">
+                        <div class="service-card-media"><img src="assets/images/projects/nishanth/detail-one.webp" alt="Interior space planning and design detail by Olivel Designs" loading="lazy"><span class="service-card-number">06 / PLANNING</span></div>
+                        <div class="service-card-body"><div class="flex items-center justify-between gap-4"><i class="ph ph-blueprint text-4xl text-brand-red"></i><span class="text-xs font-bold tracking-widest text-gray-400">VISUALIZE</span></div><h2 class="text-2xl font-bold mt-5 mb-3">Space Planning &amp; 3D Visualization</h2><p class="text-gray-600 leading-relaxed">Furniture layouts, circulation planning and design visualizations that help homeowners understand the space before execution begins.</p></div>
+                    </article>
+                </div>
+                <div class="mt-16 rounded-3xl bg-brand-dark text-white p-10 md:p-14 flex flex-col md:flex-row items-center justify-between gap-8"><div><p class="text-brand-red font-bold uppercase tracking-widest text-sm">Start with your space</p><h2 class="text-3xl font-bold mt-2">Tell us what your home needs.</h2><p class="text-gray-400 mt-3">Speak directly with the Olivel Designs team in Chennai.</p></div><a href="tel:+917339666149" class="bg-brand-red hover:bg-red-700 px-8 py-4 rounded-full font-semibold whitespace-nowrap">Call +91 733 966 6149</a></div>
+            </div>
+        </div>
+
+        <!-- ================= MANUFACTURING PAGE ================= -->
+        <div id="page-manufacturing" class="page-section hidden fade-in bg-gray-50 py-20">
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-labelledby="manufacturing-title">
+                <div class="grid lg:grid-cols-2 gap-12 items-end mb-14">
+                    <div>
+                        <span class="text-brand-red font-bold tracking-wider uppercase text-sm">Our Core Strength</span>
+                        <h1 id="manufacturing-title" class="text-5xl md:text-6xl font-bold text-gray-900 mt-3 leading-tight">Our own manufacturing unit</h1>
+                    </div>
+                    <p class="text-xl text-gray-600 leading-relaxed">Custom production gives approved interior designs a direct, coordinated path from measurements and finishes to installation in the home.</p>
+                </div>
+
+                <div class="manufacturing-video mb-8">
+                    <div id="manufacturing-video" aria-label="Olivel Designs manufacturing video player"></div>
+                    <button type="button" id="manufacturing-play-fallback" class="manufacturing-play-fallback"><i class="ph-fill ph-play"></i> Play video</button>
+                </div>
+                <div class="flex flex-col sm:flex-row justify-between gap-4 mb-20 text-sm text-gray-500">
+                    <p><i class="ph-fill ph-speaker-slash text-brand-red"></i> The video starts muted. Use the YouTube player controls to enable sound or adjust volume.</p>
+                    <a href="https://youtu.be/VaRHYbh10eU" target="_blank" rel="noopener" class="text-brand-red font-semibold hover:text-red-700 whitespace-nowrap">Watch on YouTube <i class="ph ph-arrow-up-right"></i></a>
+                </div>
+            </section>
+
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-labelledby="manufacturing-advantage-title">
+                <div class="text-center max-w-3xl mx-auto mb-14"><span class="text-brand-red font-bold tracking-wider uppercase text-sm">The Manufacturing Advantage</span><h2 id="manufacturing-advantage-title" class="text-4xl font-bold mt-3">More control between design and installation</h2></div>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <article class="bg-white rounded-2xl border border-gray-100 p-7 shadow-sm"><i class="ph ph-arrows-out-cardinal text-4xl text-brand-red"></i><h3 class="text-xl font-bold mt-5 mb-3">Made-to-fit dimensions</h3><p class="text-gray-600 leading-relaxed">Cabinetry and furniture can respond to actual site measurements instead of being limited to standard module sizes.</p></article>
+                    <article class="bg-white rounded-2xl border border-gray-100 p-7 shadow-sm"><i class="ph ph-swatches text-4xl text-brand-red"></i><h3 class="text-xl font-bold mt-5 mb-3">Coordinated finishes</h3><p class="text-gray-600 leading-relaxed">Approved colours, laminates, hardware and edge details remain connected to the original design direction.</p></article>
+                    <article class="bg-white rounded-2xl border border-gray-100 p-7 shadow-sm"><i class="ph ph-magnifying-glass text-4xl text-brand-red"></i><h3 class="text-xl font-bold mt-5 mb-3">Closer quality review</h3><p class="text-gray-600 leading-relaxed">The team can review dimensions, finish consistency and functional details before installation at the residence.</p></article>
+                    <article class="bg-white rounded-2xl border border-gray-100 p-7 shadow-sm"><i class="ph ph-calendar-check text-4xl text-brand-red"></i><h3 class="text-xl font-bold mt-5 mb-3">Production coordination</h3><p class="text-gray-600 leading-relaxed">Design, manufacturing and site teams can align schedules and decisions through a shared project workflow.</p></article>
+                </div>
+            </section>
+
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-24">
+                <div class="grid lg:grid-cols-2 gap-14 items-center">
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="assets/images/projects/balaji/gallery-01.jpg" alt="Custom kitchen produced and installed by Olivel Designs" class="w-full h-[520px] object-cover rounded-2xl shadow-lg">
+                        <div class="grid gap-4">
+                            <img src="assets/images/projects/jay-giri-avadi/gallery-07.jpg" alt="Made-to-measure wardrobe by Olivel Designs" class="w-full h-[252px] object-cover rounded-2xl shadow-lg">
+                            <img src="assets/images/projects/kkd/gallery-04.jpg" alt="Custom pooja unit by Olivel Designs" class="w-full h-[252px] object-cover rounded-2xl shadow-lg">
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-brand-red font-bold tracking-wider uppercase text-sm">What We Produce</span>
+                        <h2 class="text-4xl font-bold mt-3 mb-7">Custom elements for the complete home</h2>
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div class="bg-white border border-gray-200 rounded-xl p-5"><i class="ph ph-cooking-pot text-2xl text-brand-red"></i><h3 class="font-bold mt-3">Modular kitchens</h3><p class="text-sm text-gray-600 mt-2">Base, wall and tall storage planned around appliances and work zones.</p></div>
+                            <div class="bg-white border border-gray-200 rounded-xl p-5"><i class="ph ph-cabinet text-2xl text-brand-red"></i><h3 class="font-bold mt-3">Wardrobes</h3><p class="text-sm text-gray-600 mt-2">Internal storage, shutters, lofts and dressers tailored to room dimensions.</p></div>
+                            <div class="bg-white border border-gray-200 rounded-xl p-5"><i class="ph ph-television text-2xl text-brand-red"></i><h3 class="font-bold mt-3">TV &amp; feature units</h3><p class="text-sm text-gray-600 mt-2">Media walls, display storage, study units and integrated wall features.</p></div>
+                            <div class="bg-white border border-gray-200 rounded-xl p-5"><i class="ph ph-flower-lotus text-2xl text-brand-red"></i><h3 class="font-bold mt-3">Pooja &amp; special units</h3><p class="text-sm text-gray-600 mt-2">Purpose-built pieces developed for a specific function and visual character.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-24" aria-labelledby="manufacturing-process-title">
+                <div class="grid lg:grid-cols-12 gap-14">
+                    <div class="lg:col-span-4"><span class="text-brand-red font-bold tracking-wider uppercase text-sm">How It Moves</span><h2 id="manufacturing-process-title" class="text-4xl font-bold mt-3 mb-5">From approved design to installed interior</h2><p class="text-gray-600 leading-relaxed">A structured sequence helps the design, production and site teams work from the same decisions.</p></div>
+                    <div class="lg:col-span-8 grid md:grid-cols-2 gap-x-10 gap-y-10">
+                        <article class="manufacturing-step"><span class="manufacturing-step-number">01</span><h3 class="text-xl font-bold mb-2">Design approval</h3><p class="text-gray-600">Layouts, elevations, functional requirements and the overall visual direction are confirmed.</p></article>
+                        <article class="manufacturing-step"><span class="manufacturing-step-number">02</span><h3 class="text-xl font-bold mb-2">Site measurements</h3><p class="text-gray-600">Dimensions and site conditions are coordinated before production details are finalized.</p></article>
+                        <article class="manufacturing-step"><span class="manufacturing-step-number">03</span><h3 class="text-xl font-bold mb-2">Material confirmation</h3><p class="text-gray-600">Boards, finishes, colours and hardware are aligned with the approved specification.</p></article>
+                        <article class="manufacturing-step"><span class="manufacturing-step-number">04</span><h3 class="text-xl font-bold mb-2">Custom production</h3><p class="text-gray-600">Components are prepared to the required dimensions and organized for the project.</p></article>
+                        <article class="manufacturing-step"><span class="manufacturing-step-number">05</span><h3 class="text-xl font-bold mb-2">Pre-installation review</h3><p class="text-gray-600">Key dimensions, visible finishes and functional details are reviewed before site placement.</p></article>
+                        <article class="manufacturing-step"><span class="manufacturing-step-number">06</span><h3 class="text-xl font-bold mb-2">Installation &amp; checks</h3><p class="text-gray-600">The site team coordinates fitting, alignment, hardware adjustment and finishing details.</p></article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-24">
+                <div class="bg-brand-dark text-white rounded-3xl p-8 md:p-14">
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                        <div><span class="text-brand-red font-bold tracking-wider uppercase text-sm">Quality Focus</span><h2 class="text-4xl font-bold mt-3 mb-5">Details reviewed before handover</h2><p class="text-gray-400 leading-relaxed">Quality is not one final inspection. It is a sequence of checks that begins with the approved drawing and continues through installation.</p></div>
+                        <ul class="grid sm:grid-cols-2 gap-4">
+                            <li class="flex gap-3 rounded-xl bg-white/5 border border-white/10 p-4"><i class="ph-fill ph-check-circle text-brand-red text-xl mt-1"></i><span>Dimensions aligned with approved drawings</span></li>
+                            <li class="flex gap-3 rounded-xl bg-white/5 border border-white/10 p-4"><i class="ph-fill ph-check-circle text-brand-red text-xl mt-1"></i><span>Visible finish and colour coordination</span></li>
+                            <li class="flex gap-3 rounded-xl bg-white/5 border border-white/10 p-4"><i class="ph-fill ph-check-circle text-brand-red text-xl mt-1"></i><span>Hardware movement and accessibility</span></li>
+                            <li class="flex gap-3 rounded-xl bg-white/5 border border-white/10 p-4"><i class="ph-fill ph-check-circle text-brand-red text-xl mt-1"></i><span>Installation alignment and final detailing</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 text-center">
+                <p class="text-gray-600 mb-5">Planning a custom residential interior in Chennai?</p>
+                <a href="tel:+917339666149" class="inline-flex items-center gap-2 bg-brand-red hover:bg-red-700 text-white px-8 py-4 rounded-full font-semibold transition">Discuss your project <i class="ph ph-arrow-right"></i></a>
+            </section>
+        </div>
+
+
+        <!-- ================= PORTFOLIO PAGE ================= -->
+        <div id="page-portfolio" class="page-section hidden fade-in py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-12 items-end mb-12">
+                    <div>
+                        <span class="text-brand-red font-bold tracking-wider uppercase text-sm">Completed Homes</span>
+                        <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mt-3">Projects made to be explored</h1>
+                    </div>
+                    <p class="text-xl text-gray-600">Choose a room type, then open any residence to move through its complete project gallery. Use the arrows, thumbnails, keyboard or swipe on mobile.</p>
+                </div>
+
+                <div class="flex flex-wrap gap-3 mb-5" aria-label="Filter projects by room">
+                    <button type="button" class="project-filter is-active" data-project-filter="all">All Projects</button>
+                    <button type="button" class="project-filter" data-project-filter="living">Living</button>
+                    <button type="button" class="project-filter" data-project-filter="kitchen">Kitchen</button>
+                    <button type="button" class="project-filter" data-project-filter="bedroom">Bedroom</button>
+                    <button type="button" class="project-filter" data-project-filter="dining">Dining</button>
+                    <button type="button" class="project-filter" data-project-filter="storage">Storage</button>
+                    <button type="button" class="project-filter" data-project-filter="pooja">Pooja</button>
+                </div>
+                <p id="project-filter-status" class="text-sm text-gray-500 mb-10" aria-live="polite">Showing all 9 residential projects.</p>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="project-gallery-grid">
+                    <article class="project-gallery-card" data-project-card data-project="mukesh" data-title="Mukesh Residence" data-location="Poonamallee, Chennai" data-categories="living bedroom">
+                        <button type="button" class="project-gallery-cover" data-project-open aria-label="Open Mukesh Residence gallery"><img src="assets/images/projects/mukesh/gallery-01.jpg" alt="Mukesh Residence interior in Poonamallee" loading="lazy"><span class="project-photo-count"><i class="ph ph-images"></i> 9 photos</span><span class="project-open-label">Explore residence <i class="ph ph-arrow-up-right"></i></span></button>
+                        <div class="project-gallery-info"><h2 class="text-2xl font-bold">Mukesh Residence</h2><p class="text-gray-500 mt-1">Poonamallee, Chennai</p><div class="flex flex-wrap gap-2 mt-5"><span class="project-room-tag">Living</span><span class="project-room-tag">Bedroom</span></div></div>
+                    </article>
+                    <article class="project-gallery-card" data-project-card data-project="avm-asta-sri" data-title="AVM Asta Sri" data-location="Vadapalani, Chennai" data-categories="living kitchen bedroom storage pooja">
+                        <button type="button" class="project-gallery-cover" data-project-open aria-label="Open AVM Asta Sri gallery"><img src="assets/images/projects/avm-asta-sri/gallery-01.jpg" alt="AVM Asta Sri full-home interior in Vadapalani" loading="lazy"><span class="project-photo-count"><i class="ph ph-images"></i> 8 photos</span><span class="project-open-label">Explore residence <i class="ph ph-arrow-up-right"></i></span></button>
+                        <div class="project-gallery-info"><h2 class="text-2xl font-bold">AVM Asta Sri</h2><p class="text-gray-500 mt-1">Vadapalani, Chennai</p><div class="flex flex-wrap gap-2 mt-5"><span class="project-room-tag">Living</span><span class="project-room-tag">Kitchen</span><span class="project-room-tag">Bedroom</span></div></div>
+                    </article>
+                    <article class="project-gallery-card" data-project-card data-project="jay-giri-avadi" data-title="Jay Giri Residence" data-location="Avadi, Chennai" data-categories="living kitchen bedroom dining storage pooja">
+                        <button type="button" class="project-gallery-cover" data-project-open aria-label="Open Jay Giri Residence gallery"><img src="assets/images/projects/jay-giri-avadi/gallery-01.jpg" alt="Jay Giri Residence interior in Avadi" loading="lazy"><span class="project-photo-count"><i class="ph ph-images"></i> 8 photos</span><span class="project-open-label">Explore residence <i class="ph ph-arrow-up-right"></i></span></button>
+                        <div class="project-gallery-info"><h2 class="text-2xl font-bold">Jay Giri Residence</h2><p class="text-gray-500 mt-1">Avadi, Chennai</p><div class="flex flex-wrap gap-2 mt-5"><span class="project-room-tag">Kitchen</span><span class="project-room-tag">Living</span><span class="project-room-tag">Storage</span></div></div>
+                    </article>
+                    <article class="project-gallery-card" data-project-card data-project="subhash-madipakkam" data-title="Subhash Residence" data-location="Madipakkam, Chennai" data-categories="living kitchen bedroom dining storage">
+                        <button type="button" class="project-gallery-cover" data-project-open aria-label="Open Subhash Residence gallery"><img src="assets/images/projects/subhash-madipakkam/gallery-01.jpg" alt="Subhash Residence interior in Madipakkam" loading="lazy"><span class="project-photo-count"><i class="ph ph-images"></i> 8 photos</span><span class="project-open-label">Explore residence <i class="ph ph-arrow-up-right"></i></span></button>
+                        <div class="project-gallery-info"><h2 class="text-2xl font-bold">Subhash Residence</h2><p class="text-gray-500 mt-1">Madipakkam, Chennai</p><div class="flex flex-wrap gap-2 mt-5"><span class="project-room-tag">Living</span><span class="project-room-tag">Kitchen</span><span class="project-room-tag">Bedroom</span></div></div>
+                    </article>
+                    <article class="project-gallery-card" data-project-card data-project="mythili" data-title="Mythili Residence" data-location="Chennai" data-categories="living kitchen bedroom dining storage">
+                        <button type="button" class="project-gallery-cover" data-project-open aria-label="Open Mythili Residence gallery"><img src="assets/images/projects/mythili/gallery-01.jpg" alt="Mythili Residence customized 3BHK interior" loading="lazy"><span class="project-photo-count"><i class="ph ph-images"></i> 8 photos</span><span class="project-open-label">Explore residence <i class="ph ph-arrow-up-right"></i></span></button>
+                        <div class="project-gallery-info"><h2 class="text-2xl font-bold">Mythili Residence</h2><p class="text-gray-500 mt-1">Customized 3BHK, Chennai</p><div class="flex flex-wrap gap-2 mt-5"><span class="project-room-tag">Living</span><span class="project-room-tag">Kitchen</span><span class="project-room-tag">Bedroom</span></div></div>
+                    </article>
+                    <article class="project-gallery-card" data-project-card data-project="nishanth" data-title="Nishanth Residence" data-location="Chennai" data-categories="living bedroom storage">
+                        <button type="button" class="project-gallery-cover" data-project-open aria-label="Open Nishanth Residence gallery"><img src="assets/images/projects/nishanth/gallery-01.jpg" alt="Nishanth Residence custom interior in Chennai" loading="lazy"><span class="project-photo-count"><i class="ph ph-images"></i> 8 photos</span><span class="project-open-label">Explore residence <i class="ph ph-arrow-up-right"></i></span></button>
+                        <div class="project-gallery-info"><h2 class="text-2xl font-bold">Nishanth Residence</h2><p class="text-gray-500 mt-1">Chennai</p><div class="flex flex-wrap gap-2 mt-5"><span class="project-room-tag">Living</span><span class="project-room-tag">Bedroom</span><span class="project-room-tag">Storage</span></div></div>
+                    </article>
+                    <article class="project-gallery-card" data-project-card data-project="balaji" data-title="Balaji Residence" data-location="Chennai" data-categories="living kitchen bedroom storage pooja">
+                        <button type="button" class="project-gallery-cover" data-project-open aria-label="Open Balaji Residence gallery"><img src="assets/images/projects/balaji/gallery-01.jpg" alt="Balaji Residence modular interior in Chennai" loading="lazy"><span class="project-photo-count"><i class="ph ph-images"></i> 8 photos</span><span class="project-open-label">Explore residence <i class="ph ph-arrow-up-right"></i></span></button>
+                        <div class="project-gallery-info"><h2 class="text-2xl font-bold">Balaji Residence</h2><p class="text-gray-500 mt-1">Chennai</p><div class="flex flex-wrap gap-2 mt-5"><span class="project-room-tag">Kitchen</span><span class="project-room-tag">Bedroom</span><span class="project-room-tag">Pooja</span></div></div>
+                    </article>
+                    <article class="project-gallery-card" data-project-card data-project="kkd" data-title="KKD Residence" data-location="Chennai" data-categories="living kitchen bedroom storage pooja">
+                        <button type="button" class="project-gallery-cover" data-project-open aria-label="Open KKD Residence gallery"><img src="assets/images/projects/kkd/gallery-01.jpg" alt="KKD Residence full-home interior in Chennai" loading="lazy"><span class="project-photo-count"><i class="ph ph-images"></i> 8 photos</span><span class="project-open-label">Explore residence <i class="ph ph-arrow-up-right"></i></span></button>
+                        <div class="project-gallery-info"><h2 class="text-2xl font-bold">KKD Residence</h2><p class="text-gray-500 mt-1">Chennai</p><div class="flex flex-wrap gap-2 mt-5"><span class="project-room-tag">Kitchen</span><span class="project-room-tag">Bedroom</span><span class="project-room-tag">Storage</span></div></div>
+                    </article>
+                    <article class="project-gallery-card" data-project-card data-project="sridharan" data-title="Sridharan Home" data-location="Chennai" data-categories="living kitchen bedroom dining storage pooja">
+                        <button type="button" class="project-gallery-cover" data-project-open aria-label="Open Sridharan Home gallery"><img src="assets/images/projects/sridharan/gallery-01.jpg" alt="Sridharan Home residential interior in Chennai" loading="lazy"><span class="project-photo-count"><i class="ph ph-images"></i> 22 photos</span><span class="project-open-label">Explore residence <i class="ph ph-arrow-up-right"></i></span></button>
+                        <div class="project-gallery-info"><h2 class="text-2xl font-bold">Sridharan Home</h2><p class="text-gray-500 mt-1">Chennai</p><div class="flex flex-wrap gap-2 mt-5"><span class="project-room-tag">Full Home</span><span class="project-room-tag">22 Images</span></div></div>
+                    </article>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= BLOG PAGE ================= -->
+        <div id="page-blog" class="page-section hidden fade-in py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div id="blog-index-view">
+                    <div class="grid lg:grid-cols-2 gap-12 items-end mb-14">
+                        <div><span class="text-brand-red font-bold tracking-wider uppercase text-sm">Ideas &amp; Advice</span><h1 class="text-5xl md:text-6xl font-bold mt-3">The Olivel interior journal</h1></div>
+                        <p class="text-xl text-gray-600">Clear guidance for Chennai homeowners. New articles will be added here as they are ready.</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <button type="button" class="blog-landscape-card" data-blog-open="full-home">
+                            <img src="assets/images/blog/full-home-interior-design-chennai.jpg" alt="Full home interior design in Chennai" loading="lazy">
+                            <span class="blog-card-copy"><strong>Full Home Interior Design in Chennai: What Is Included and What Is Not Included?</strong><small>A clear guide to scope, inclusions, exclusions and planning.</small></span>
+                        </button>
+                        <article class="blog-coming-card"><span>Coming Soon</span></article>
+                        <article class="blog-coming-card"><span>Coming Soon</span></article>
+                        <article class="blog-coming-card"><span>Coming Soon</span></article>
+                        <article class="blog-coming-card"><span>Coming Soon</span></article>
+                        <article class="blog-coming-card"><span>Coming Soon</span></article>
+                    </div>
+                </div>
+
+                <div id="blog-reader-view" class="hidden">
+                    <div class="flex items-center justify-between gap-5 mb-9">
+                        <button type="button" class="inline-flex items-center gap-2 text-brand-red font-bold" data-blog-back><i class="ph ph-arrow-left"></i> Back to all blogs</button>
+                        <button type="button" onclick="navigate('contact')" class="hidden sm:inline-flex items-center gap-2 border border-gray-300 hover:border-brand-red hover:text-brand-red px-5 py-2 rounded-full font-semibold transition">Discuss your project <i class="ph ph-arrow-right"></i></button>
+                    </div>
+
+                    <article data-blog-article="full-home" class="hidden">
+                        <img class="blog-reader-hero" src="assets/images/blog/full-home-interior-design-chennai.jpg" alt="Full home interior design in Chennai">
+                        <header class="max-w-4xl mx-auto text-center py-12"><span class="text-brand-red font-bold tracking-wider uppercase text-sm">Full-Home Interiors</span><h1 class="text-4xl md:text-6xl font-bold mt-4">Full Home Interior Design in Chennai: What Is Included and What Is Not Included?</h1><p class="text-xl text-gray-600 mt-6 leading-relaxed">A clear scope guide for homeowners comparing turnkey interiors, complete residential interiors and end-to-end execution.</p></header>
+                        <div class="blog-content">
+                            <h2>What full-home interior design and execution means</h2>
+                            <p>A full-home or turnkey interior service places design development, fixed furniture production, service coordination, installation and finishing under one accountable team. Homeowners approve requirements, layouts, materials and costs before work progresses through manufacturing and site execution.</p>
+                            <p>The term does not mean that every item needed for moving into a home is automatically included. The signed quotation, drawings and specifications should define the final scope room by room.</p>
+
+                            <h2>Work commonly included in a residential package</h2>
+                            <h3>1. Modular kitchen</h3>
+                            <p>Kitchen scope can include base, wall and tall cabinets, drawer systems, internal accessories, appliance spaces and coordinated service points. Countertops, backsplashes and specialty accessories must be confirmed separately because their inclusion varies by property and quotation.</p>
+                            <h3>2. Living and dining fixed interiors</h3>
+                            <p>Typical elements include television units, concealed cable planning, foyer storage, shoe racks, crockery units, display storage and pooja units. Dimensions are developed around circulation, available wall space and the visual direction approved for the home.</p>
+                            <h3>3. Bedroom storage and work areas</h3>
+                            <p>Wardrobes, lofts, dressers, study tables and integrated storage are planned according to room measurements and household needs. Internal divisions should reflect actual clothing, luggage, documents and accessories rather than a generic shelf pattern.</p>
+                            <h3>4. Ceilings and lighting coordination</h3>
+                            <p>When included, ceiling details organize ambient, task and accent lighting while concealing selected services. Decorative lights, fixture supply and automation should be identified clearly before procurement.</p>
+                            <h3>5. Required electrical and plumbing adjustments</h3>
+                            <p>Minor changes may be required to coordinate switch points, appliance outlets, television wiring, sink plumbing or washbasin cabinetry with the interior layout. Significant relocation should be evaluated and quoted separately.</p>
+                            <h3>6. Painting and feature finishes</h3>
+                            <p>Final painting, wallpaper, textured finishes or wall paneling may be used to complete the design after installation. The brand, preparation work, finish and feature-wall materials should appear in the approved scope.</p>
+
+                            <h2>Items usually outside a standard package</h2>
+                            <ul><li><strong>Electronic appliances:</strong> televisions, refrigerators, air conditioners, washing machines, ovens, chimneys and other products selected with separate brand warranties.</li><li><strong>Loose furniture:</strong> sofas, dining sets, coffee tables and ready-made beds unless custom furniture is specifically included.</li><li><strong>Soft furnishings and decor:</strong> curtains, mattresses, rugs, cushions, bedding and decorative accessories chosen according to personal taste.</li><li><strong>Professional deep cleaning:</strong> a basic site cleanup is different from specialist floor, glass or bathroom deep-cleaning services.</li><li><strong>Major civil alteration:</strong> structural demolition, complete flooring replacement or new masonry construction normally requires a separate technical scope and approvals.</li></ul>
+
+                            <h2>How homeowners can avoid scope confusion</h2>
+                            <p>Ask for a room-by-room quotation tied to drawings and material specifications. Confirm appliance models early, identify products that will be purchased directly, and record responsibilities for delivery, electrical points, plumbing, painting, cleaning and final installation.</p>
+                            <p>Any item discussed verbally should be added to the written scope before execution begins. This gives the homeowner and project team one shared reference for cost, quality and progress.</p>
+
+                            <h2>Why an integrated execution partner helps</h2>
+                            <p>When design, manufacturing and site coordination follow the same approved information, homeowners have a clearer point of contact and fewer gaps between trades. Olivel Designs supports this approach through residential design, its own manufacturing unit and coordinated installation across Chennai.</p>
+                            <p><strong>Important:</strong> Inclusions differ between projects. The signed quotation, drawings and material specifications remain the final definition of scope.</p>
+                        </div>
+                    </article>
+
+                    <div class="mt-14 border-t border-gray-200 pt-8 flex flex-col sm:flex-row items-center justify-between gap-5">
+                        <button type="button" class="inline-flex items-center gap-2 text-brand-red font-bold" data-blog-back><i class="ph ph-arrow-left"></i> Back to all blogs</button>
+                        <button type="button" onclick="navigate('contact')" class="inline-flex items-center gap-2 bg-brand-red hover:bg-red-700 text-white px-7 py-3 rounded-full font-semibold transition">Plan your interior with us <i class="ph ph-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- ================= CONTACT PAGE ================= -->
+        <div id="page-contact" class="page-section hidden fade-in bg-gray-50 py-20">
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-labelledby="contact-title">
+                <div class="grid lg:grid-cols-2 gap-12 items-end mb-16">
+                    <div><span class="text-brand-red font-bold tracking-wider uppercase text-sm">Contact Olivel Designs</span><h1 id="contact-title" class="text-5xl md:text-6xl font-bold mt-3 leading-tight">Let us discuss your home</h1></div>
+                    <p class="text-xl text-gray-600 leading-relaxed">Share your requirements with our Chennai interior design and execution team. Call, email, visit our studio or prepare an enquiry through the form below.</p>
+                </div>
+
+                <div class="grid lg:grid-cols-12 gap-8 items-stretch">
+                    <aside class="lg:col-span-5 bg-brand-dark text-white rounded-3xl p-8 md:p-12">
+                        <span class="text-brand-red font-bold tracking-wider uppercase text-sm">Reach Us Directly</span>
+                        <h2 class="text-4xl font-bold mt-3 mb-9">A conversation is the first design step.</h2>
+                        <div class="space-y-7">
+                            <a href="tel:+917339666149" class="flex gap-4 group"><span class="w-12 h-12 shrink-0 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-brand-red transition"><i class="ph-fill ph-phone text-xl"></i></span><span><small class="block text-gray-400 uppercase tracking-wider">Call us</small><strong class="block text-xl mt-1">+91 733 966 6149</strong></span></a>
+                            <a href="mailto:info@oliveldesigns.com" class="flex gap-4 group"><span class="w-12 h-12 shrink-0 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-brand-red transition"><i class="ph-fill ph-envelope text-xl"></i></span><span><small class="block text-gray-400 uppercase tracking-wider">Email us</small><strong class="block text-lg mt-1 break-all">info@oliveldesigns.com</strong></span></a>
+                            <a href="https://www.google.com/maps/search/?api=1&amp;query=No.+2%2C+Balaji+Nagar+Main+Road%2C+Kolathur%2C+Chennai+600099" target="_blank" rel="noopener" class="flex gap-4 group"><span class="w-12 h-12 shrink-0 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-brand-red transition"><i class="ph-fill ph-map-pin text-xl"></i></span><span><small class="block text-gray-400 uppercase tracking-wider">Visit us</small><strong class="block text-lg mt-1">No. 2, Balaji Nagar Main Road, Kolathur, Chennai - 600099</strong></span></a>
+                            <a href="https://wa.me/917339666149" target="_blank" rel="noopener" class="flex gap-4 group"><span class="w-12 h-12 shrink-0 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-brand-red transition"><i class="ph-fill ph-whatsapp-logo text-xl"></i></span><span><small class="block text-gray-400 uppercase tracking-wider">WhatsApp</small><strong class="block text-lg mt-1">Start a conversation</strong></span></a>
+                        </div>
+                        <div class="border-t border-white/10 mt-10 pt-8"><p class="text-sm text-gray-400 mb-4">Follow Olivel Designs</p><div class="flex gap-3"><a href="https://www.instagram.com/oliveldesigns/" target="_blank" rel="noopener" aria-label="Instagram" class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red transition"><i class="ph-fill ph-instagram-logo text-xl"></i></a><a href="https://www.facebook.com/oliveldesigns" target="_blank" rel="noopener" aria-label="Facebook" class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red transition"><i class="ph-fill ph-facebook-logo text-xl"></i></a><a href="https://www.linkedin.com/company/olivel-design-studio/" target="_blank" rel="noopener" aria-label="LinkedIn" class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red transition"><i class="ph-fill ph-linkedin-logo text-xl"></i></a><a href="https://www.youtube.com/@OlivelDesignsofficial" target="_blank" rel="noopener" aria-label="YouTube" class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red transition"><i class="ph-fill ph-youtube-logo text-xl"></i></a></div></div>
+                    </aside>
+
+                    <div class="lg:col-span-7 bg-white rounded-3xl border border-gray-200 p-8 md:p-12 shadow-sm">
+                        <span class="text-brand-red font-bold tracking-wider uppercase text-sm">Project Enquiry</span>
+                        <h2 class="text-4xl font-bold mt-3 mb-3">Tell us what you are planning</h2>
+                        <p class="text-gray-600 mb-9">Submitting this form opens your email application with the enquiry addressed to Olivel Designs. Review it there and press Send.</p>
+                        <form id="contact-enquiry-form" action="mailto:info@oliveldesigns.com" method="post" enctype="text/plain">
+                            <div class="grid sm:grid-cols-2 gap-5">
+                                <label class="font-semibold text-sm">Your name<input class="contact-field mt-2" type="text" name="name" autocomplete="name" required placeholder="Full name"></label>
+                                <label class="font-semibold text-sm">Phone number<input class="contact-field mt-2" type="tel" name="phone" autocomplete="tel" required placeholder="+91"></label>
+                                <label class="font-semibold text-sm">Email address<input class="contact-field mt-2" type="email" name="email" autocomplete="email" required placeholder="you@example.com"></label>
+                                <label class="font-semibold text-sm">Project location<input class="contact-field mt-2" type="text" name="location" autocomplete="address-level2" placeholder="Area, Chennai"></label>
+                            </div>
+                            <label class="block font-semibold text-sm mt-5">Service required<select class="contact-field mt-2" name="service" required><option value="">Choose a service</option><option>Full-Home Interiors</option><option>Modular Kitchen</option><option>Wardrobes &amp; Storage</option><option>Renovation &amp; Styling</option><option>Custom Furniture</option><option>Manufacturing Enquiry</option></select></label>
+                            <label class="block font-semibold text-sm mt-5">Tell us about your home<textarea class="contact-field mt-2 min-h-[150px] resize-y" name="message" required placeholder="Property type, rooms, expected scope and anything important to your family..."></textarea></label>
+                            <button type="submit" class="mt-7 w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-red hover:bg-red-700 text-white px-8 py-4 rounded-full font-semibold transition">Prepare email enquiry <i class="ph ph-paper-plane-tilt"></i></button>
+                            <p id="contact-form-status" class="text-sm text-gray-500 mt-4" aria-live="polite"></p>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16" aria-labelledby="map-title">
+                <div class="flex flex-col sm:flex-row justify-between sm:items-end gap-5 mb-7"><div><span class="text-brand-red font-bold tracking-wider uppercase text-sm">Find Our Studio</span><h2 id="map-title" class="text-4xl font-bold mt-2">Kolathur, Chennai</h2></div><a href="https://www.google.com/maps/search/?api=1&amp;query=No.+2%2C+Balaji+Nagar+Main+Road%2C+Kolathur%2C+Chennai+600099" target="_blank" rel="noopener" class="text-brand-red font-semibold">Open in Google Maps <i class="ph ph-arrow-up-right"></i></a></div>
+                <div class="contact-map shadow-xl"><iframe title="Map showing Olivel Designs in Kolathur, Chennai" src="https://www.google.com/maps?q=No.%202%2C%20Balaji%20Nagar%20Main%20Road%2C%20Kolathur%2C%20Chennai%20600099&amp;output=embed" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+            </section>
+        </div>
+
+        <!-- Project Gallery Lightbox -->
+        <div id="project-lightbox" class="fixed inset-0 z-[100] hidden bg-black/95 p-4 md:p-6" role="dialog" aria-modal="true" aria-labelledby="lightbox-project-title">
+            <div class="max-w-7xl mx-auto h-full flex flex-col">
+                <div class="flex items-center justify-between gap-5 text-white pb-4">
+                    <div><h2 id="lightbox-project-title" class="text-2xl md:text-3xl font-bold">Project gallery</h2><p id="lightbox-project-location" class="text-sm text-gray-400 mt-1"></p></div>
+                    <div class="flex items-center gap-4"><span id="lightbox-counter" class="text-sm text-gray-300">1 / 1</span><button type="button" id="lightbox-close" class="w-11 h-11 rounded-full border border-white/20 hover:bg-brand-red flex items-center justify-center transition" aria-label="Close project gallery"><i class="ph ph-x text-2xl"></i></button></div>
+                </div>
+                <div class="lightbox-stage" id="lightbox-stage">
+                    <button type="button" id="lightbox-prev" class="lightbox-arrow lightbox-arrow--prev" aria-label="Previous project image"><i class="ph ph-arrow-left text-xl"></i></button>
+                    <img id="lightbox-image" src="" alt="">
+                    <button type="button" id="lightbox-next" class="lightbox-arrow lightbox-arrow--next" aria-label="Next project image"><i class="ph ph-arrow-right text-xl"></i></button>
+                </div>
+                <div id="lightbox-thumbs" class="lightbox-thumbs" aria-label="Project image thumbnails"></div>
+            </div>
+        </div>
+
+
+    </main>
+
+    <!-- Global Footer -->
+    <footer id="contact-footer" class="bg-brand-dark text-white pt-20 pb-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <!-- Brand Col -->
+                <div>
+                    <img src="assets/images/brand/olivel-designs-logo.png" alt="Olivel Designs Logo" class="footer-logo h-24 w-auto object-contain mb-6">
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        Specializing in residential interior design and execution. Our own manufacturing unit supports custom-made interiors for homes across Chennai and Tamil Nadu.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.instagram.com/oliveldesigns/" target="_blank" rel="noopener" aria-label="Olivel Designs on Instagram" class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red transition"><i class="ph-fill ph-instagram-logo text-xl"></i></a>
+                        <a href="https://www.facebook.com/oliveldesigns" target="_blank" rel="noopener" aria-label="Olivel Designs on Facebook" class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red transition"><i class="ph-fill ph-facebook-logo text-xl"></i></a>
+                        <a href="https://www.linkedin.com/company/olivel-design-studio/" target="_blank" rel="noopener" aria-label="Olivel Designs on LinkedIn" class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red transition"><i class="ph-fill ph-linkedin-logo text-xl"></i></a>
+                        <a href="https://www.youtube.com/@OlivelDesignsofficial" target="_blank" rel="noopener" aria-label="Olivel Designs on YouTube" class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red transition"><i class="ph-fill ph-youtube-logo text-xl"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6 font-serif">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><button onclick="navigate('home')" class="text-gray-400 hover:text-brand-red transition">Home</button></li>
+                        <li><button onclick="navigate('about')" class="text-gray-400 hover:text-brand-red transition">About Us</button></li>
+                        <li><button onclick="navigate('services')" class="text-gray-400 hover:text-brand-red transition">Services</button></li>
+                        <li><button onclick="navigate('portfolio')" class="text-gray-400 hover:text-brand-red transition">Our Portfolio</button></li>
+                        <li><button onclick="navigate('blog')" class="text-gray-400 hover:text-brand-red transition">Interior Blog</button></li>
+                        <li><button onclick="navigate('manufacturing')" class="text-gray-400 hover:text-brand-red transition">Manufacturing Unit</button></li>
+                        <li><button onclick="navigate('contact')" class="text-gray-400 hover:text-brand-red transition">Contact Us</button></li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6 font-serif">Our Services</h4>
+                    <ul class="space-y-3">
+                        <li class="text-gray-400">Residential Interior Design</li>
+                        <li class="text-gray-400">End-to-End Execution</li>
+                        <li class="text-gray-400">Modular Kitchens</li>
+                        <li class="text-gray-400">Custom Wardrobes & Storage</li>
+                        <li class="text-gray-400">Space Planning & 3D Visualization</li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6 font-serif">Contact Us</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i class="ph-fill ph-map-pin text-brand-red text-xl mt-1"></i>
+                            <span class="text-gray-400">No. 2, Balaji Nagar Main Road, Kolathur, Chennai - 600099</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="ph-fill ph-phone text-brand-red text-xl"></i>
+                            <a href="tel:+917339666149" class="text-gray-400 hover:text-white transition">+91 733 966 6149</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="ph-fill ph-envelope text-brand-red text-xl"></i>
+                            <a href="mailto:info@oliveldesigns.com" class="text-gray-400 hover:text-white transition">info@oliveldesigns.com</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+                <p>&copy; <span id="year"></span> Olivel Designs. All Rights Reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="privacy-policy.html" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="terms.html" class="hover:text-white transition">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Set dynamic year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('hidden');
+            const isOpen = !mobileMenu.classList.contains('hidden');
+            mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
+            mobileMenuBtn.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+        }
+
+        // Simple SPA Navigation Logic
+        function navigate(pageId, updateHash = true) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page-section');
+            pages.forEach(page => {
+                page.classList.add('hidden');
+                page.classList.remove('block');
+            });
+
+            // Show target page
+            const targetPage = document.getElementById(`page-${pageId}`);
+            if(targetPage) {
+                targetPage.classList.remove('hidden');
+                targetPage.classList.add('block');
+            }
+
+            if (pageId === 'blog' && typeof showBlogIndex === 'function') showBlogIndex(false);
+
+            // Start the muted player while Manufacturing is open and stop it on exit.
+            if (pageId === 'manufacturing') startManufacturingVideo();
+            else stopManufacturingVideo();
+
+            // Update active nav styling
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                const isActive = link.dataset.page === pageId;
+                link.classList.toggle('text-brand-red', isActive);
+                link.classList.toggle('text-gray-800', !isActive);
+                link.classList.toggle('font-semibold', isActive);
+                link.classList.toggle('font-medium', !isActive);
+            });
+
+            // Scroll to top smoothly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Re-run visibility checks for content that was hidden on first load.
+            requestAnimationFrame(() => revealObserver.takeRecords());
+
+            if (updateHash) {
+                const nextHash = pageId === 'home' ? '' : `#${pageId}`;
+                if (window.location.hash !== nextHash) {
+                    history.replaceState(null, '', `${window.location.pathname}${nextHash}`);
+                }
+            }
+        }
+
+        // Heading, content and image reveals on scroll.
+        const revealTargets = document.querySelectorAll('h1, h2, .project-frame, .review-card, #page-services article, .project-gallery-card, .blog-card, .blog-landscape-card');
+        revealTargets.forEach(element => element.classList.add('scroll-reveal'));
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        revealTargets.forEach(element => revealObserver.observe(element));
+
+        // Interactive stacked project cards in the home hero.
+        const heroCards = Array.from(document.querySelectorAll('[data-hero-card]'));
+        const heroDots = Array.from(document.querySelectorAll('[data-hero-dot]'));
+        const heroPrevious = document.getElementById('hero-prev');
+        const heroNext = document.getElementById('hero-next');
+        let activeHeroCard = 0;
+
+        function showHeroCard(index) {
+            const cardCount = heroCards.length;
+            activeHeroCard = (index + cardCount) % cardCount;
+
+            heroCards.forEach((card, cardIndex) => {
+                const offset = (cardIndex - activeHeroCard + cardCount) % cardCount;
+                card.classList.remove('is-active', 'is-next', 'is-behind', 'is-prev');
+                if (offset === 0) card.classList.add('is-active');
+                if (offset === 1) card.classList.add('is-next');
+                if (offset === 2) card.classList.add('is-behind');
+                if (offset === cardCount - 1) card.classList.add('is-prev');
+                card.setAttribute('aria-pressed', String(offset === 0));
+            });
+
+            heroDots.forEach((dot, dotIndex) => {
+                dot.classList.toggle('is-active', dotIndex === activeHeroCard);
+                dot.setAttribute('aria-current', dotIndex === activeHeroCard ? 'true' : 'false');
+            });
+        }
+
+        heroCards.forEach((card, cardIndex) => {
+            card.addEventListener('click', () => {
+                showHeroCard(cardIndex === activeHeroCard ? activeHeroCard + 1 : cardIndex);
+            });
+        });
+        heroDots.forEach((dot, dotIndex) => dot.addEventListener('click', () => showHeroCard(dotIndex)));
+        heroPrevious.addEventListener('click', () => showHeroCard(activeHeroCard - 1));
+        heroNext.addEventListener('click', () => showHeroCard(activeHeroCard + 1));
+        showHeroCard(0);
+
+        // Project filters and multi-image lightbox gallery.
+        function numberedGallery(project, count) {
+            return Array.from({ length: count }, (_, index) =>
+                `assets/images/projects/${project}/gallery-${String(index + 1).padStart(2, '0')}.jpg`
+            );
+        }
+
+        const projectGalleries = {
+            'mukesh': numberedGallery('mukesh', 9),
+            'avm-asta-sri': numberedGallery('avm-asta-sri', 8),
+            'jay-giri-avadi': numberedGallery('jay-giri-avadi', 8),
+            'subhash-madipakkam': numberedGallery('subhash-madipakkam', 8),
+            'mythili': numberedGallery('mythili', 8),
+            'nishanth': numberedGallery('nishanth', 8),
+            'balaji': numberedGallery('balaji', 8),
+            'kkd': numberedGallery('kkd', 8),
+            'sridharan': numberedGallery('sridharan', 22)
+        };
+
+        const projectFilterButtons = Array.from(document.querySelectorAll('[data-project-filter]'));
+        const projectCards = Array.from(document.querySelectorAll('[data-project-card]'));
+        const projectFilterStatus = document.getElementById('project-filter-status');
+
+        function filterProjects(category) {
+            let visibleCount = 0;
+            projectCards.forEach(card => {
+                const categories = card.dataset.categories.split(' ');
+                const isVisible = category === 'all' || categories.includes(category);
+                card.classList.toggle('hidden', !isVisible);
+                if (isVisible) visibleCount++;
+            });
+            projectFilterButtons.forEach(button => {
+                const isActive = button.dataset.projectFilter === category;
+                button.classList.toggle('is-active', isActive);
+                button.setAttribute('aria-pressed', String(isActive));
+            });
+            const label = category === 'all' ? 'residential' : category;
+            projectFilterStatus.textContent = `Showing ${visibleCount} ${label} project${visibleCount === 1 ? '' : 's'}.`;
+        }
+
+        projectFilterButtons.forEach(button => {
+            button.addEventListener('click', () => filterProjects(button.dataset.projectFilter));
+        });
+
+        const projectLightbox = document.getElementById('project-lightbox');
+        const lightboxImage = document.getElementById('lightbox-image');
+        const lightboxTitle = document.getElementById('lightbox-project-title');
+        const lightboxLocation = document.getElementById('lightbox-project-location');
+        const lightboxCounter = document.getElementById('lightbox-counter');
+        const lightboxThumbs = document.getElementById('lightbox-thumbs');
+        const lightboxClose = document.getElementById('lightbox-close');
+        const lightboxPrevious = document.getElementById('lightbox-prev');
+        const lightboxNext = document.getElementById('lightbox-next');
+        const lightboxStage = document.getElementById('lightbox-stage');
+        let currentProjectImages = [];
+        let currentProjectTitle = '';
+        let currentProjectImage = 0;
+        let lightboxTrigger = null;
+        let touchStartX = 0;
+
+        function showProjectImage(index) {
+            if (!currentProjectImages.length) return;
+            currentProjectImage = (index + currentProjectImages.length) % currentProjectImages.length;
+            lightboxImage.src = currentProjectImages[currentProjectImage];
+            lightboxImage.alt = `${currentProjectTitle} interior photograph ${currentProjectImage + 1}`;
+            lightboxCounter.textContent = `${currentProjectImage + 1} / ${currentProjectImages.length}`;
+            Array.from(lightboxThumbs.children).forEach((thumb, thumbIndex) => {
+                thumb.classList.toggle('is-active', thumbIndex === currentProjectImage);
+                thumb.setAttribute('aria-current', thumbIndex === currentProjectImage ? 'true' : 'false');
+            });
+            const activeThumb = lightboxThumbs.children[currentProjectImage];
+            if (activeThumb) activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+
+        function buildProjectThumbnails() {
+            const fragment = document.createDocumentFragment();
+            currentProjectImages.forEach((source, index) => {
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.className = 'lightbox-thumb';
+                button.setAttribute('aria-label', `Show image ${index + 1}`);
+                const image = document.createElement('img');
+                image.src = source;
+                image.alt = '';
+                image.loading = 'lazy';
+                button.appendChild(image);
+                button.addEventListener('click', () => showProjectImage(index));
+                fragment.appendChild(button);
+            });
+            lightboxThumbs.replaceChildren(fragment);
+        }
+
+        function openProjectGallery(card, trigger) {
+            currentProjectImages = projectGalleries[card.dataset.project] || [];
+            if (!currentProjectImages.length) return;
+            currentProjectTitle = card.dataset.title;
+            lightboxTitle.textContent = currentProjectTitle;
+            lightboxLocation.textContent = card.dataset.location;
+            lightboxTrigger = trigger;
+            buildProjectThumbnails();
+            projectLightbox.classList.remove('hidden');
+            document.body.classList.add('lightbox-open');
+            showProjectImage(0);
+            lightboxClose.focus();
+        }
+
+        function closeProjectGallery() {
+            if (projectLightbox.classList.contains('hidden')) return;
+            projectLightbox.classList.add('hidden');
+            document.body.classList.remove('lightbox-open');
+            lightboxImage.removeAttribute('src');
+            if (lightboxTrigger) lightboxTrigger.focus();
+        }
+
+        document.querySelectorAll('[data-project-open]').forEach(button => {
+            button.addEventListener('click', () => openProjectGallery(button.closest('[data-project-card]'), button));
+        });
+        lightboxClose.addEventListener('click', closeProjectGallery);
+        lightboxPrevious.addEventListener('click', () => showProjectImage(currentProjectImage - 1));
+        lightboxNext.addEventListener('click', () => showProjectImage(currentProjectImage + 1));
+        projectLightbox.addEventListener('click', event => {
+            if (event.target === projectLightbox) closeProjectGallery();
+        });
+        lightboxStage.addEventListener('touchstart', event => {
+            touchStartX = event.changedTouches[0].clientX;
+        }, { passive: true });
+        lightboxStage.addEventListener('touchend', event => {
+            const distance = event.changedTouches[0].clientX - touchStartX;
+            if (Math.abs(distance) > 50) showProjectImage(currentProjectImage + (distance < 0 ? 1 : -1));
+        }, { passive: true });
+        document.addEventListener('keydown', event => {
+            if (projectLightbox.classList.contains('hidden')) return;
+            if (event.key === 'Escape') closeProjectGallery();
+            if (event.key === 'ArrowLeft') showProjectImage(currentProjectImage - 1);
+            if (event.key === 'ArrowRight') showProjectImage(currentProjectImage + 1);
+        });
+        filterProjects('all');
+
+        // Internal blog reader: landscape cards open full articles without leaving the site.
+        const blogIndexView = document.getElementById('blog-index-view');
+        const blogReaderView = document.getElementById('blog-reader-view');
+        const blogArticles = Array.from(document.querySelectorAll('[data-blog-article]'));
+        const blogOpenButtons = Array.from(document.querySelectorAll('[data-blog-open]'));
+        const blogBackButtons = Array.from(document.querySelectorAll('[data-blog-back]'));
+        let lastBlogTrigger = null;
+
+        function openBlogArticle(articleId, trigger) {
+            const targetArticle = blogArticles.find(article => article.dataset.blogArticle === articleId);
+            if (!targetArticle) return;
+            lastBlogTrigger = trigger;
+            blogIndexView.classList.add('hidden');
+            blogReaderView.classList.remove('hidden');
+            blogArticles.forEach(article => article.classList.toggle('hidden', article !== targetArticle));
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            const heading = targetArticle.querySelector('h1');
+            if (heading) {
+                heading.setAttribute('tabindex', '-1');
+                setTimeout(() => heading.focus({ preventScroll: true }), 350);
+            }
+        }
+
+        function showBlogIndex(restoreFocus = true) {
+            if (!blogIndexView || !blogReaderView) return;
+            blogReaderView.classList.add('hidden');
+            blogIndexView.classList.remove('hidden');
+            blogArticles.forEach(article => article.classList.add('hidden'));
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (restoreFocus && lastBlogTrigger) setTimeout(() => lastBlogTrigger.focus({ preventScroll: true }), 350);
+        }
+
+        blogOpenButtons.forEach(button => {
+            button.addEventListener('click', () => openBlogArticle(button.dataset.blogOpen, button));
+        });
+        blogBackButtons.forEach(button => button.addEventListener('click', () => showBlogIndex(true)));
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && !blogReaderView.classList.contains('hidden')) showBlogIndex(true);
+        });
+
+        // Reliable YouTube autoplay through the official iframe player API.
+        let youtubeApiPromise = null;
+        let manufacturingPlayer = null;
+        let manufacturingPlayerReady = false;
+        const manufacturingPlayFallback = document.getElementById('manufacturing-play-fallback');
+
+        function loadYouTubeApi() {
+            if (window.YT && window.YT.Player) return Promise.resolve(window.YT);
+            if (youtubeApiPromise) return youtubeApiPromise;
+            youtubeApiPromise = new Promise((resolve, reject) => {
+                const existingCallback = window.onYouTubeIframeAPIReady;
+                window.onYouTubeIframeAPIReady = () => {
+                    if (typeof existingCallback === 'function') existingCallback();
+                    resolve(window.YT);
+                };
+                const script = document.createElement('script');
+                script.src = 'https://www.youtube.com/iframe_api';
+                script.async = true;
+                script.onerror = () => reject(new Error('YouTube player API could not load'));
+                document.head.appendChild(script);
+            });
+            return youtubeApiPromise;
+        }
+
+        function startManufacturingVideo() {
+            manufacturingPlayFallback.classList.remove('hidden');
+            loadYouTubeApi().then(() => {
+                if (manufacturingPlayerReady && manufacturingPlayer) {
+                    manufacturingPlayer.mute();
+                    manufacturingPlayer.playVideo();
+                    return;
+                }
+                if (manufacturingPlayer) return;
+                manufacturingPlayer = new YT.Player('manufacturing-video', {
+                    videoId: 'VaRHYbh10eU',
+                    width: '100%',
+                    height: '100%',
+                    playerVars: {
+                        autoplay: 1,
+                        mute: 1,
+                        controls: 1,
+                        playsinline: 1,
+                        loop: 1,
+                        playlist: 'VaRHYbh10eU',
+                        rel: 0,
+                        modestbranding: 1
+                    },
+                    events: {
+                        onReady: event => {
+                            manufacturingPlayerReady = true;
+                            event.target.mute();
+                            event.target.playVideo();
+                        },
+                        onStateChange: event => {
+                            if (event.data === YT.PlayerState.PLAYING) {
+                                manufacturingPlayFallback.classList.add('hidden');
+                            }
+                        },
+                        onError: () => manufacturingPlayFallback.classList.remove('hidden')
+                    }
+                });
+            }).catch(() => manufacturingPlayFallback.classList.remove('hidden'));
+        }
+
+        function stopManufacturingVideo() {
+            if (manufacturingPlayerReady && manufacturingPlayer && typeof manufacturingPlayer.stopVideo === 'function') {
+                manufacturingPlayer.stopVideo();
+            }
+            if (manufacturingPlayFallback) manufacturingPlayFallback.classList.remove('hidden');
+        }
+
+        manufacturingPlayFallback.addEventListener('click', startManufacturingVideo);
+
+        // Static-site enquiry form: prepare a complete email in the visitor's mail app.
+        const contactEnquiryForm = document.getElementById('contact-enquiry-form');
+        const contactFormStatus = document.getElementById('contact-form-status');
+        contactEnquiryForm.addEventListener('submit', event => {
+            event.preventDefault();
+            const formData = new FormData(contactEnquiryForm);
+            const name = String(formData.get('name') || '').trim();
+            const phone = String(formData.get('phone') || '').trim();
+            const email = String(formData.get('email') || '').trim();
+            const location = String(formData.get('location') || '').trim();
+            const service = String(formData.get('service') || '').trim();
+            const message = String(formData.get('message') || '').trim();
+            const subject = `Interior enquiry from ${name}${location ? ` - ${location}` : ''}`;
+            const body = [
+                'Hello Olivel Designs,',
+                '',
+                'I would like to discuss an interior project.',
+                '',
+                `Name: ${name}`,
+                `Phone: ${phone}`,
+                `Email: ${email}`,
+                `Project location: ${location || 'Not specified'}`,
+                `Service required: ${service}`,
+                '',
+                'Project details:',
+                message
+            ].join('\n');
+            contactFormStatus.textContent = 'Opening your email application. Review the enquiry and press Send.';
+            window.location.href = `mailto:info@oliveldesigns.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        });
+
+        // Interior-themed Three.js icon field reacting to cursor movement and page scroll.
+        function initParticleBackground() {
+            const container = document.getElementById('three-particle-background');
+            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (!container || reducedMotion || typeof THREE === 'undefined') return;
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(56, window.innerWidth / window.innerHeight, 0.1, 100);
+            camera.position.z = 24;
+
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: 'low-power' });
+            renderer.setClearColor(0x000000, 0);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.4));
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            container.appendChild(renderer.domElement);
+
+            const mobile = window.innerWidth < 768;
+            const iconCount = mobile ? 38 : 82;
+            const iconTypes = ['chair', 'sofa', 'lamp', 'plant', 'table', 'shelf', 'house', 'plan'];
+            const iconColors = ['#667085', '#D91624', '#1D4ED8'];
+            const iconTextures = new Map();
+            const iconSprites = [];
+            const iconBases = [];
+
+            function drawInteriorIcon(context, type, color) {
+                const roundedRect = (x, y, width, height, radius) => {
+                    if (typeof context.roundRect === 'function') {
+                        context.roundRect(x, y, width, height, radius);
+                        return;
+                    }
+                    const r = Math.min(radius, width / 2, height / 2);
+                    context.moveTo(x + r, y);
+                    context.arcTo(x + width, y, x + width, y + height, r);
+                    context.arcTo(x + width, y + height, x, y + height, r);
+                    context.arcTo(x, y + height, x, y, r);
+                    context.arcTo(x, y, x + width, y, r);
+                };
+                context.clearRect(0, 0, 96, 96);
+                context.strokeStyle = color;
+                context.fillStyle = color;
+                context.lineWidth = 4;
+                context.lineCap = 'round';
+                context.lineJoin = 'round';
+                context.beginPath();
+
+                if (type === 'chair') {
+                    context.moveTo(28, 22); context.lineTo(28, 55); context.lineTo(68, 55);
+                    context.moveTo(36, 43); context.lineTo(68, 43); context.lineTo(68, 70);
+                    context.moveTo(34, 55); context.lineTo(30, 78);
+                    context.moveTo(62, 55); context.lineTo(68, 78);
+                } else if (type === 'sofa') {
+                    roundedRect(20, 42, 56, 27, 8);
+                    context.moveTo(27, 42); context.lineTo(27, 31); context.quadraticCurveTo(27, 25, 34, 25);
+                    context.lineTo(62, 25); context.quadraticCurveTo(69, 25, 69, 31); context.lineTo(69, 42);
+                    context.moveTo(27, 69); context.lineTo(25, 77);
+                    context.moveTo(69, 69); context.lineTo(71, 77);
+                } else if (type === 'lamp') {
+                    context.moveTo(48, 28); context.lineTo(48, 72);
+                    context.moveTo(33, 72); context.lineTo(63, 72);
+                    context.moveTo(34, 28); context.lineTo(62, 28); context.lineTo(56, 15); context.lineTo(40, 15); context.closePath();
+                    context.moveTo(43, 78); context.lineTo(53, 78);
+                } else if (type === 'plant') {
+                    context.moveTo(38, 55); context.lineTo(42, 78); context.lineTo(60, 78); context.lineTo(64, 55); context.closePath();
+                    context.moveTo(51, 55); context.lineTo(51, 28);
+                    context.moveTo(51, 39); context.quadraticCurveTo(31, 35, 31, 19); context.quadraticCurveTo(49, 20, 51, 39);
+                    context.moveTo(52, 46); context.quadraticCurveTo(72, 41, 72, 25); context.quadraticCurveTo(54, 27, 52, 46);
+                } else if (type === 'table') {
+                    context.ellipse(48, 34, 28, 10, 0, 0, Math.PI * 2);
+                    context.moveTo(48, 44); context.lineTo(48, 72);
+                    context.moveTo(34, 76); context.quadraticCurveTo(48, 68, 62, 76);
+                } else if (type === 'shelf') {
+                    roundedRect(24, 18, 48, 60, 3);
+                    context.moveTo(24, 38); context.lineTo(72, 38);
+                    context.moveTo(24, 58); context.lineTo(72, 58);
+                    context.moveTo(39, 18); context.lineTo(39, 38);
+                    context.moveTo(57, 38); context.lineTo(57, 58);
+                } else if (type === 'house') {
+                    context.moveTo(18, 44); context.lineTo(48, 17); context.lineTo(78, 44);
+                    context.moveTo(26, 38); context.lineTo(26, 77); context.lineTo(70, 77); context.lineTo(70, 38);
+                    roundedRect(43, 53, 12, 24, 2);
+                } else {
+                    roundedRect(18, 18, 60, 60, 3);
+                    context.moveTo(43, 18); context.lineTo(43, 49); context.lineTo(18, 49);
+                    context.moveTo(43, 36); context.lineTo(78, 36);
+                    context.moveTo(59, 36); context.lineTo(59, 78);
+                    context.moveTo(31, 49); context.lineTo(31, 67); context.lineTo(59, 67);
+                }
+                context.stroke();
+            }
+
+            function getIconTexture(type, color) {
+                const key = `${type}-${color}`;
+                if (iconTextures.has(key)) return iconTextures.get(key);
+                const canvas = document.createElement('canvas');
+                canvas.width = 96;
+                canvas.height = 96;
+                const context = canvas.getContext('2d');
+                drawInteriorIcon(context, type, color);
+                const texture = new THREE.CanvasTexture(canvas);
+                texture.minFilter = THREE.LinearFilter;
+                texture.magFilter = THREE.LinearFilter;
+                iconTextures.set(key, texture);
+                return texture;
+            }
+
+            const iconGroup = new THREE.Group();
+            scene.add(iconGroup);
+
+            for (let index = 0; index < iconCount; index++) {
+                const type = iconTypes[index % iconTypes.length];
+                const colorChoice = Math.random();
+                const color = colorChoice > 0.82 ? iconColors[1] : colorChoice > 0.68 ? iconColors[2] : iconColors[0];
+                const restingOpacity = color === iconColors[0] ? 0.14 : 0.18;
+                const activeOpacity = color === iconColors[0] ? 0.62 : 0.72;
+                const material = new THREE.SpriteMaterial({
+                    map: getIconTexture(type, color),
+                    transparent: true,
+                    opacity: restingOpacity,
+                    depthWrite: false
+                });
+                const sprite = new THREE.Sprite(material);
+                const base = {
+                    x: (Math.random() - 0.5) * 41,
+                    y: (Math.random() - 0.5) * 26,
+                    z: (Math.random() - 0.5) * 8,
+                    phase: Math.random() * Math.PI * 2,
+                    speed: 0.75 + Math.random() * 0.55,
+                    rotation: (Math.random() - 0.5) * 0.45,
+                    restingOpacity,
+                    activeOpacity
+                };
+                const scale = mobile ? 0.58 + Math.random() * 0.35 : 0.62 + Math.random() * 0.46;
+                sprite.position.set(base.x, base.y, base.z);
+                sprite.scale.set(scale, scale, 1);
+                sprite.material.rotation = base.rotation;
+                iconBases.push(base);
+                iconSprites.push(sprite);
+                iconGroup.add(sprite);
+            }
+
+            const pointer = new THREE.Vector2(10, 10);
+            const targetPointer = new THREE.Vector2(10, 10);
+            const raycaster = new THREE.Raycaster();
+            const interactionPlane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
+            const interactionPoint = new THREE.Vector3();
+            let scrollTarget = window.scrollY;
+            let scrollCurrent = window.scrollY;
+            let previousTime = 0;
+
+            window.addEventListener('pointermove', event => {
+                targetPointer.x = (event.clientX / window.innerWidth) * 2 - 1;
+                targetPointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
+            }, { passive: true });
+            document.addEventListener('pointerleave', () => targetPointer.set(10, 10));
+            window.addEventListener('scroll', () => { scrollTarget = window.scrollY; }, { passive: true });
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.4));
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+
+            function animateParticles(time) {
+                requestAnimationFrame(animateParticles);
+                if (document.hidden || time - previousTime < 32) return;
+                previousTime = time;
+
+                pointer.lerp(targetPointer, 0.08);
+                scrollCurrent += (scrollTarget - scrollCurrent) * 0.055;
+                raycaster.setFromCamera(pointer, camera);
+                raycaster.ray.intersectPlane(interactionPlane, interactionPoint);
+
+                iconSprites.forEach((sprite, index) => {
+                    const base = iconBases[index];
+                    let nextX = base.x + Math.cos(time * 0.00024 * base.speed + base.phase) * 0.16;
+                    let nextY = base.y + Math.sin(time * 0.00036 * base.speed + base.phase) * 0.2;
+                    nextY += (scrollCurrent * 0.0011 % 1.8);
+                    let targetOpacity = base.restingOpacity;
+
+                    if (pointer.x < 2 && interactionPoint) {
+                        const dx = nextX - interactionPoint.x;
+                        const dy = nextY - interactionPoint.y;
+                        const distanceSquared = dx * dx + dy * dy;
+                        const hoverRadius = mobile ? 1.75 : 1.45;
+                        const hoverDistanceSquared = hoverRadius * hoverRadius;
+                        if (distanceSquared < hoverDistanceSquared) {
+                            const hoverStrength = 1 - Math.sqrt(distanceSquared) / hoverRadius;
+                            targetOpacity = base.restingOpacity
+                                + (base.activeOpacity - base.restingOpacity) * Math.min(1, hoverStrength * 1.8);
+                        }
+
+                        const movementRadius = mobile ? 2.6 : 3.2;
+                        if (distanceSquared < movementRadius * movementRadius && distanceSquared > 0.001) {
+                            const distance = Math.sqrt(distanceSquared);
+                            const force = (movementRadius - distance) / movementRadius;
+                            nextX += (dx / distance) * force * 0.28;
+                            nextY += (dy / distance) * force * 0.28;
+                        }
+                    }
+
+                    sprite.position.x += (nextX - sprite.position.x) * 0.075;
+                    sprite.position.y += (nextY - sprite.position.y) * 0.075;
+                    sprite.material.opacity += (targetOpacity - sprite.material.opacity) * 0.12;
+                    sprite.material.rotation = base.rotation + Math.sin(time * 0.00018 + base.phase) * 0.08;
+                });
+                iconGroup.rotation.z = Math.sin(time * 0.00006) * 0.025;
+                camera.position.x += (pointer.x * 0.65 - camera.position.x) * 0.025;
+                camera.position.y += (pointer.y * 0.4 - camera.position.y) * 0.025;
+                renderer.render(scene, camera);
+            }
+
+            requestAnimationFrame(animateParticles);
+        }
+
+        window.addEventListener('load', initParticleBackground, { once: true });
+
+        const routePages = ['home', 'about', 'services', 'portfolio', 'blog', 'manufacturing', 'contact'];
+        const initialRoute = window.location.hash.slice(1);
+        if (routePages.includes(initialRoute)) navigate(initialRoute, false);
+        window.addEventListener('hashchange', () => {
+            const requestedRoute = window.location.hash.slice(1) || 'home';
+            if (routePages.includes(requestedRoute)) navigate(requestedRoute, false);
+        });
+
+
+
+    </script>
+</body>
+</html>
