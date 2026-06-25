@@ -25,6 +25,12 @@
 
     <style>
         /* Custom Styles for smoothness and hiding scrollbars */
+        :root {
+            --olivel-navy: #080B21;
+            --olivel-blue: #2724D8;
+            --olivel-light-blue: #4169F5;
+            --olivel-gradient: linear-gradient(125deg, #080B21 0%, #172E78 52%, #4169F5 100%);
+        }
         @media (min-width: 769px) {
             html { font-size: 120%; }
         }
@@ -36,6 +42,7 @@
         }
         .bg-brand-dark {
             background-color: #080B21 !important;
+            background-image: var(--olivel-gradient) !important;
         }
         #three-particle-background {
             position: fixed;
@@ -56,6 +63,11 @@
             position: relative;
             z-index: 1;
         }
+        body > header {
+            position: sticky !important;
+            z-index: 1000 !important;
+            isolation: isolate;
+        }
         main {
             background: transparent;
         }
@@ -72,17 +84,42 @@
             right: 0;
             bottom: 0;
             left: 0;
+            z-index: 9999;
             overflow-y: auto;
-            background: #080B21;
+            background-color: #080B21 !important;
+            background-image: var(--olivel-gradient) !important;
             color: #fff;
             border-top: 1px solid rgba(255, 255, 255, .12);
-            box-shadow: none;
+            box-shadow: 0 24px 60px rgba(8, 11, 33, .38);
             backdrop-filter: none;
             -webkit-backdrop-filter: none;
+            opacity: 1;
+            pointer-events: auto;
+            isolation: isolate;
+        }
+        #mobile-menu > div {
+            width: min(100%, 520px);
+            min-height: calc(100dvh - 96px);
+            margin: 0 auto;
+            padding: clamp(26px, 6vh, 54px) 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            justify-content: center;
+            gap: 8px;
         }
         #mobile-menu .mobile-nav-link {
             color: #fff;
-            border-bottom: 1px solid rgba(255, 255, 255, .12);
+            width: 100%;
+            min-height: 58px;
+            padding: 12px 20px;
+            border: 1px solid rgba(255, 255, 255, .14);
+            border-radius: 14px;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.35rem, 6vw, 1.75rem);
+            font-weight: 600;
+            line-height: 1.15;
+            text-align: center;
         }
         #mobile-menu .mobile-nav-link:hover,
         #mobile-menu .mobile-nav-link:focus {
@@ -90,8 +127,8 @@
             background: rgba(255, 255, 255, .09);
         }
         #mobile-menu .mobile-social-link {
-            width: 46px;
-            height: 46px;
+            width: 50px;
+            height: 50px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -107,6 +144,168 @@
         }
         body.mobile-menu-open {
             overflow: hidden;
+        }
+        #mobile-menu-btn {
+            width: 48px;
+            height: 48px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            color: #fff !important;
+            background-color: #080B21;
+            background-image: var(--olivel-gradient);
+            box-shadow: 0 10px 24px rgba(8, 11, 33, .22);
+            transition: transform .25s ease, box-shadow .25s ease;
+        }
+        #mobile-menu-btn:hover,
+        #mobile-menu-btn:focus-visible {
+            color: #fff !important;
+            transform: translateY(-1px);
+            box-shadow: 0 13px 30px rgba(39, 36, 216, .3);
+        }
+        .nav-link {
+            color: var(--olivel-blue) !important;
+            background: none !important;
+            -webkit-text-fill-color: currentColor;
+        }
+        .nav-link:hover,
+        .nav-link.text-brand-red {
+            color: var(--olivel-light-blue) !important;
+        }
+        main .page-section h1,
+        main .page-section h2,
+        main .page-section h3,
+        main .page-section h4,
+        main .page-section h5,
+        main .page-section h6,
+        .text-gray-900,
+        .text-gray-800 {
+            color: var(--olivel-navy) !important;
+            background: none;
+            -webkit-text-fill-color: currentColor;
+        }
+        .text-gray-700,
+        .text-gray-600 {
+            color: #263972 !important;
+        }
+        .text-gray-500 {
+            color: #40528B !important;
+        }
+        .bg-brand-dark,
+        #contact-footer,
+        #mobile-menu {
+            color: #fff !important;
+        }
+        .bg-brand-dark h1,
+        .bg-brand-dark h2,
+        .bg-brand-dark h3,
+        .bg-brand-dark h4,
+        .bg-brand-dark h5,
+        .bg-brand-dark h6,
+        .bg-brand-dark p,
+        .bg-brand-dark span,
+        .bg-brand-dark small,
+        .bg-brand-dark strong,
+        .bg-brand-dark a,
+        .bg-brand-dark li,
+        .bg-brand-dark .text-gray-400,
+        .bg-brand-dark .text-gray-500,
+        .bg-brand-dark .text-gray-600,
+        #mobile-menu .mobile-nav-link,
+        #contact-footer h1,
+        #contact-footer h2,
+        #contact-footer h3,
+        #contact-footer h4,
+        #contact-footer h5,
+        #contact-footer h6 {
+            color: #fff !important;
+            background-image: none !important;
+            -webkit-text-fill-color: currentColor;
+        }
+        .bg-brand-dark .project-frame,
+        .bg-brand-dark .project-frame h1,
+        .bg-brand-dark .project-frame h2,
+        .bg-brand-dark .project-frame h3,
+        .bg-brand-dark .project-frame h4,
+        .bg-brand-dark .project-frame p,
+        .bg-brand-dark .project-frame span,
+        .bg-brand-dark .project-frame small,
+        .bg-brand-dark .project-frame strong,
+        .bg-brand-dark .bg-white,
+        .bg-brand-dark .bg-white h1,
+        .bg-brand-dark .bg-white h2,
+        .bg-brand-dark .bg-white h3,
+        .bg-brand-dark .bg-white h4,
+        .bg-brand-dark .bg-white p,
+        .bg-brand-dark .bg-white span,
+        .bg-brand-dark .bg-white small,
+        .bg-brand-dark .bg-white strong,
+        .bg-brand-dark .bg-white i,
+        .bg-brand-dark .lightbox-arrow,
+        .bg-brand-dark .lightbox-arrow i {
+            color: var(--olivel-navy) !important;
+            -webkit-text-fill-color: currentColor;
+        }
+        main .page-section .bg-brand-dark h1,
+        main .page-section .bg-brand-dark h2,
+        main .page-section .bg-brand-dark h3,
+        main .page-section .bg-brand-dark h4,
+        main .page-section .bg-brand-dark h5,
+        main .page-section .bg-brand-dark h6,
+        main .page-section .bg-brand-dark p,
+        main .page-section .bg-brand-dark span,
+        main .page-section .bg-brand-dark small,
+        main .page-section .bg-brand-dark strong,
+        main .page-section .bg-brand-dark a,
+        main .page-section .bg-brand-dark li {
+            color: #fff !important;
+            background-image: none !important;
+            -webkit-text-fill-color: currentColor;
+        }
+        main .page-section .bg-brand-dark .project-frame,
+        main .page-section .bg-brand-dark .project-frame h1,
+        main .page-section .bg-brand-dark .project-frame h2,
+        main .page-section .bg-brand-dark .project-frame h3,
+        main .page-section .bg-brand-dark .project-frame h4,
+        main .page-section .bg-brand-dark .project-frame p,
+        main .page-section .bg-brand-dark .project-frame span,
+        main .page-section .bg-brand-dark .project-frame small,
+        main .page-section .bg-brand-dark .project-frame strong,
+        main .page-section .bg-brand-dark .bg-white,
+        main .page-section .bg-brand-dark .bg-white h1,
+        main .page-section .bg-brand-dark .bg-white h2,
+        main .page-section .bg-brand-dark .bg-white h3,
+        main .page-section .bg-brand-dark .bg-white h4,
+        main .page-section .bg-brand-dark .bg-white p,
+        main .page-section .bg-brand-dark .bg-white span,
+        main .page-section .bg-brand-dark .bg-white small,
+        main .page-section .bg-brand-dark .bg-white strong,
+        main .page-section .bg-brand-dark .bg-white i,
+        main .page-section .bg-brand-dark .lightbox-arrow,
+        main .page-section .bg-brand-dark .lightbox-arrow i {
+            color: var(--olivel-navy) !important;
+            -webkit-text-fill-color: currentColor;
+        }
+        .instagram-showcase {
+            background: linear-gradient(180deg, #fff 0%, #F2F5FF 100%) !important;
+        }
+        .instagram-showcase h2 {
+            color: var(--olivel-navy) !important;
+            background: none !important;
+            -webkit-text-fill-color: currentColor;
+        }
+        .instagram-showcase .instagram-track > a {
+            border: 1px solid rgba(39, 36, 216, .16);
+            box-shadow: 0 18px 42px rgba(8, 11, 33, .12);
+        }
+        .instagram-track > a > span {
+            color: var(--olivel-navy) !important;
+            background: rgba(255, 255, 255, .96) !important;
+            -webkit-text-fill-color: currentColor;
+        }
+        .instagram-track > a > span i {
+            color: #D91624 !important;
         }
         #page-manufacturing,
         #page-contact {
@@ -804,7 +1003,7 @@
 
                 <!-- Mobile Menu Button -->
                 <div class="lg:hidden flex items-center">
-                    <button id="mobile-menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu" class="text-[#080B21] hover:text-brand-red focus:outline-none">
+                    <button id="mobile-menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu" class="focus:outline-none">
                         <i class="ph ph-list text-3xl"></i>
                     </button>
                 </div>
@@ -813,15 +1012,15 @@
 
         <!-- Mobile Menu Panel -->
         <div id="mobile-menu" class="hidden lg:hidden w-full">
-            <div class="px-5 pt-5 pb-8 space-y-1">
-                <button onclick="navigate('home'); toggleMobileMenu()" class="mobile-nav-link block w-full text-left px-4 py-3.5 text-lg font-medium rounded-lg">Home</button>
-                <button onclick="navigate('about'); toggleMobileMenu()" class="mobile-nav-link block w-full text-left px-4 py-3.5 text-lg font-medium rounded-lg">About Us</button>
-                <button onclick="navigate('services'); toggleMobileMenu()" class="mobile-nav-link block w-full text-left px-4 py-3.5 text-lg font-medium rounded-lg">Services</button>
-                <button onclick="navigate('portfolio'); toggleMobileMenu()" class="mobile-nav-link block w-full text-left px-4 py-3.5 text-lg font-medium rounded-lg">Projects</button>
-                <button onclick="navigate('blog'); toggleMobileMenu()" class="mobile-nav-link block w-full text-left px-4 py-3.5 text-lg font-medium rounded-lg">Blog</button>
-                <button onclick="navigate('manufacturing'); toggleMobileMenu()" class="mobile-nav-link block w-full text-left px-4 py-3.5 text-lg font-medium rounded-lg">Manufacturing</button>
-                <button onclick="navigate('contact'); toggleMobileMenu()" class="mobile-nav-link block w-full text-left px-4 py-3.5 text-lg font-medium rounded-lg">Contact</button>
-                <button onclick="navigate('contact'); toggleMobileMenu()" class="mt-4 w-full bg-brand-red text-white px-6 py-3 rounded-md font-medium text-center">Get Free Quote</button>
+            <div>
+                <button onclick="navigateFromMobile('home')" class="mobile-nav-link">Home</button>
+                <button onclick="navigateFromMobile('about')" class="mobile-nav-link">About Us</button>
+                <button onclick="navigateFromMobile('services')" class="mobile-nav-link">Services</button>
+                <button onclick="navigateFromMobile('portfolio')" class="mobile-nav-link">Projects</button>
+                <button onclick="navigateFromMobile('blog')" class="mobile-nav-link">Blog</button>
+                <button onclick="navigateFromMobile('manufacturing')" class="mobile-nav-link">Manufacturing</button>
+                <button onclick="navigateFromMobile('contact')" class="mobile-nav-link">Contact</button>
+                <button onclick="navigateFromMobile('contact')" class="mt-4 w-full bg-brand-red text-white px-6 py-3 rounded-md font-medium text-center">Get Free Quote</button>
                 <div class="flex flex-wrap items-center justify-center gap-3 pt-6" aria-label="Olivel Designs social media">
                     <a href="https://www.instagram.com/oliveldesigns/" target="_blank" rel="noopener" aria-label="Instagram" class="mobile-social-link"><i class="ph-fill ph-instagram-logo text-2xl"></i></a>
                     <a href="https://www.facebook.com/oliveldesigns" target="_blank" rel="noopener" aria-label="Facebook" class="mobile-social-link"><i class="ph-fill ph-facebook-logo text-2xl"></i></a>
@@ -928,7 +1127,7 @@
             </section>
 
             <!-- Why Choose Us / Services -->
-            <section class="py-20 bg-white">
+            <section class="instagram-showcase py-20 bg-white">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="text-center max-w-3xl mx-auto mb-16">
                         <h2 class="text-4xl font-bold text-gray-900 mb-4">The Olivel Advantage</h2>
@@ -1537,6 +1736,11 @@
             mobileMenuBtn.setAttribute('aria-label', 'Open navigation menu');
             mobileMenuBtn.querySelector('i').className = 'ph ph-list text-3xl';
             document.body.classList.remove('mobile-menu-open');
+        }
+
+        function navigateFromMobile(pageId) {
+            closeMobileMenu();
+            navigate(pageId);
         }
 
         window.addEventListener('resize', () => {

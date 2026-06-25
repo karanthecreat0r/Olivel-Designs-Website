@@ -10,7 +10,8 @@
       '<a href="https://www.instagram.com/oliveldesigns/" target="_blank" rel="noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.4" cy="6.7" r="1"></circle></svg></a>' +
       '<a href="https://www.facebook.com/oliveldesigns" target="_blank" rel="noreferrer" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3c-3.3 0-5 2-5 5v3H6v4h3v7h4v-7h3.5l.5-4h-4V9c0-.7.3-1 1-1Z"></path></svg></a>' +
       '<a href="https://www.linkedin.com/company/olivel-design-studio/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><rect x="3" y="9" width="4" height="12"></rect><circle cx="5" cy="5" r="2"></circle><path d="M11 21V9h4v2c1-1.5 2.4-2.4 4.2-2.4 3 0 3.8 2 3.8 5.2V21h-4v-6.3c0-1.5-.3-2.7-2-2.7-1.8 0-2 1.5-2 3.1V21h-4Z"></path></svg></a>' +
-      '<a href="https://www.youtube.com/@OlivelDesignsofficial" target="_blank" rel="noreferrer" aria-label="YouTube"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="4"></rect><path class="play" d="m10 9 5 3-5 3Z"></path></svg></a>';
+      '<a href="https://www.youtube.com/@OlivelDesignsofficial" target="_blank" rel="noreferrer" aria-label="YouTube"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="4"></rect><path class="play" d="m10 9 5 3-5 3Z"></path></svg></a>' +
+      '<a href="https://wa.me/917339666149" target="_blank" rel="noreferrer" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M20.5 11.7a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.4-4.7A8.5 8.5 0 1 1 20.5 11.7Z"></path><path d="M8.2 7.7c.2-.5.4-.5.7-.5h.5c.2 0 .4.1.5.4l.7 1.7c.1.3.1.5-.1.7l-.6.7c-.2.2-.2.4-.1.6.6 1.2 1.6 2.2 2.8 2.8.2.1.4.1.6-.1l.8-1c.2-.2.4-.3.7-.2l1.7.8c.3.1.4.3.4.5 0 .5-.2 1.5-1 2.1-.7.6-1.7.8-2.8.5-1.4-.4-3.2-1.3-4.8-2.9-1.3-1.3-2.2-2.9-2.6-4.3-.3-1-.1-1.8.4-2.4.4-.4.8-.6 1.2-.6Z"></path></svg></a>';
     contactBar.insertBefore(socials, contactBar.lastElementChild);
   }
 
@@ -31,6 +32,27 @@
       var open = nav.classList.toggle('is-open');
       toggle.setAttribute('aria-expanded', String(open));
       document.body.classList.toggle('menu-open', open);
+    });
+    nav.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        nav.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('menu-open');
+      });
+    });
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') {
+        nav.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('menu-open');
+      }
+    });
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 820) {
+        nav.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('menu-open');
+      }
     });
   }
 

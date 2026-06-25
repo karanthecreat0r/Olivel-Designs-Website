@@ -45,3 +45,19 @@
 @media(max-width:820px){.contact-bar{grid-template-columns:auto 1fr;gap:14px}.contact-bar>a:first-child{display:none}.contact-bar>a:last-child{justify-self:end}.header-socials{justify-self:start}.main-nav{inset:144px 0 0}.social-section-head{align-items:flex-start;flex-direction:column}.reviews-grid{grid-template-columns:1fr}.review-summary,.review-card{min-height:auto}}
 @media(max-width:560px){.header-socials{gap:6px}.header-socials a{width:27px;height:27px}.contact-bar>a:last-child{font-size:10px}.contact-bar>a:last-child strong{font-size:12px;margin-left:3px}.instagram-section,.reviews-section{padding:80px var(--pad)}.insta-card img{height:330px}.review-card blockquote{font-size:20px}}
 @media(prefers-reduced-motion:reduce){.motion-ready .motion-heading,.motion-ready .motion-item,.motion-ready .motion-image{opacity:1;transform:none;filter:none;transition:none}.motion-image img{transform:none!important}}
+
+/* Olivel navy-to-blue visual system and solid mobile navigation */
+:root{--brand-gradient:linear-gradient(125deg,#080b21 0%,#172e78 52%,#4169f5 100%)}
+body{color:#080b21}
+.site-header{z-index:1000;isolation:isolate}
+.contact-bar,.services-showcase,.site-footer{background-color:#080b21;background-image:var(--brand-gradient)}
+.menu-toggle{width:48px;height:48px;padding:7px;border-radius:14px;background-color:#080b21;background-image:var(--brand-gradient);box-shadow:0 10px 24px rgba(8,11,33,.22)}
+.menu-toggle span{width:27px;margin:6px auto;background:#fff}
+h1,h2,h3,h4{color:#080b21;background:none;-webkit-text-fill-color:currentColor}
+.main-nav a{color:#2724d8;background:none;-webkit-text-fill-color:currentColor}
+.contact-bar,.contact-bar *,.services-showcase,.services-showcase h1,.services-showcase h2,.services-showcase h3,.services-showcase h4,.services-showcase p,.services-showcase span,.services-showcase a,.site-footer,.site-footer h1,.site-footer h2,.site-footer h3,.site-footer h4,.site-footer p,.site-footer span,.site-footer a,.site-footer li{color:#fff;background-image:none;-webkit-text-fill-color:currentColor}
+@media(max-width:820px){
+  .main-nav{z-index:9999;background-color:#080b21;background-image:var(--brand-gradient);opacity:1;pointer-events:auto;box-shadow:0 24px 60px rgba(8,11,33,.38)}
+  .main-nav.is-open{align-items:center;justify-content:center;padding:30px 24px}
+  .main-nav.is-open a{width:min(100%,420px);padding:15px 20px;border:1px solid rgba(255,255,255,.15);border-radius:14px;color:#fff;background:none;font-size:clamp(23px,7vw,31px);line-height:1.15;text-align:center;-webkit-text-fill-color:currentColor}
+}
