@@ -7,7 +7,7 @@
     <meta name="description" content="Olivel Designs specializes in premium residential interior design and execution in Chennai. With our own manufacturing unit, we deliver flawless, custom-crafted home interiors.">
     <meta name="keywords" content="interior design Chennai, residential interior execution, interior designers in Tamil Nadu, bespoke furniture Chennai, home interiors, modular kitchens Chennai, Olivel Designs, own manufacturing unit">
     <meta name="author" content="Olivel Designs">
-    <meta name="theme-color" content="#D91624">
+    <meta name="theme-color" content="#080B21">
     <link rel="icon" href="assets/favicon.png">
     <link rel="canonical" href="https://oliveldesigns.com/">
     
@@ -31,8 +31,11 @@
         body {
             font-family: 'Inter', sans-serif;
             background-color: #F8F9FA;
-            color: #0A0A0A;
+            color: #080B21;
             overflow-x: hidden;
+        }
+        .bg-brand-dark {
+            background-color: #080B21 !important;
         }
         #three-particle-background {
             position: fixed;
@@ -59,9 +62,51 @@
         .page-section {
             background-color: transparent !important;
         }
-        .page-section > section:not(.bg-gray-900):not(.bg-brand-dark) {
+        .page-section > section:not(.bg-brand-dark) {
             background-color: rgba(255, 255, 255, .66) !important;
             backdrop-filter: blur(.5px);
+        }
+        #mobile-menu {
+            position: fixed;
+            top: 96px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            overflow-y: auto;
+            background: #080B21;
+            color: #fff;
+            border-top: 1px solid rgba(255, 255, 255, .12);
+            box-shadow: none;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+        }
+        #mobile-menu .mobile-nav-link {
+            color: #fff;
+            border-bottom: 1px solid rgba(255, 255, 255, .12);
+        }
+        #mobile-menu .mobile-nav-link:hover,
+        #mobile-menu .mobile-nav-link:focus {
+            color: #fff;
+            background: rgba(255, 255, 255, .09);
+        }
+        #mobile-menu .mobile-social-link {
+            width: 46px;
+            height: 46px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, .22);
+            border-radius: 999px;
+            color: #fff;
+            transition: background .25s ease, border-color .25s ease, transform .25s ease;
+        }
+        #mobile-menu .mobile-social-link:hover {
+            background: #D91624;
+            border-color: #D91624;
+            transform: translateY(-2px);
+        }
+        body.mobile-menu-open {
+            overflow: hidden;
         }
         #page-manufacturing,
         #page-contact {
@@ -141,7 +186,7 @@
             overflow: hidden;
             border: 9px solid #fff;
             background: #fff;
-            box-shadow: 0 30px 75px rgba(10, 10, 10, .24);
+            box-shadow: 0 30px 75px rgba(8, 11, 33, .24);
         }
         .hero-card-frame img {
             width: 100%;
@@ -158,7 +203,7 @@
             gap: 16px;
             padding: 0 22px;
             border-top: 1px solid #e5e7eb;
-            color: #0A0A0A;
+            color: #080B21;
         }
         .hero-card-count {
             color: #D91624;
@@ -180,7 +225,7 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid rgba(10,10,10,.18);
+            border: 1px solid rgba(8,11,33,.18);
             border-radius: 999px;
             background: #fff;
             transition: color .25s ease, background .25s ease, transform .25s ease;
@@ -201,6 +246,9 @@
             filter: grayscale(1) brightness(0) invert(1);
             background: transparent;
         }
+        .founder-mobile-overlay {
+            background: linear-gradient(to top, rgba(8, 11, 33, .94), rgba(8, 11, 33, .55), transparent);
+        }
         .scroll-reveal {
             opacity: 0;
             transform: translateY(32px);
@@ -211,15 +259,15 @@
             transform: translateY(0);
         }
         .project-frame {
-            border: 1px solid rgba(10, 10, 10, .18);
+            border: 1px solid rgba(8, 11, 33, .18);
             background: #fff;
             padding: 8px;
-            box-shadow: 0 14px 40px rgba(10, 10, 10, .09);
+            box-shadow: 0 14px 40px rgba(8, 11, 33, .09);
             transition: transform .45s ease, box-shadow .45s ease;
         }
         .project-frame:hover {
             transform: translateY(-8px);
-            box-shadow: 0 24px 60px rgba(10, 10, 10, .18);
+            box-shadow: 0 24px 60px rgba(8, 11, 33, .18);
         }
         .project-frame img {
             transition: transform .8s cubic-bezier(.2,.7,.2,1);
@@ -228,7 +276,7 @@
             transform: scale(1.06);
         }
         .project-tag {
-            border-top: 1px solid rgba(10, 10, 10, .12);
+            border-top: 1px solid rgba(8, 11, 33, .12);
             padding: 16px 14px 10px;
         }
         .service-card {
@@ -238,13 +286,13 @@
             border: 1px solid #e5e7eb;
             border-radius: 18px;
             background: #fff;
-            box-shadow: 0 14px 36px rgba(10, 10, 10, .07);
+            box-shadow: 0 14px 36px rgba(8, 11, 33, .07);
             transition: transform .45s ease, box-shadow .45s ease, border-color .45s ease;
         }
         .service-card:hover {
             transform: translateY(-9px);
             border-color: rgba(217, 22, 36, .35);
-            box-shadow: 0 26px 60px rgba(10, 10, 10, .16);
+            box-shadow: 0 26px 60px rgba(8, 11, 33, .16);
         }
         .service-card-media {
             position: relative;
@@ -256,7 +304,7 @@
             content: "";
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(10,10,10,.48), transparent 55%);
+            background: linear-gradient(to top, rgba(8,11,33,.48), transparent 55%);
             pointer-events: none;
         }
         .service-card-media img {
@@ -291,8 +339,8 @@
         }
         .project-filter:hover,
         .project-filter.is-active {
-            border-color: #0A0A0A;
-            background: #0A0A0A;
+            border-color: #080B21;
+            background: #080B21;
             color: #fff;
         }
         .project-gallery-card {
@@ -300,12 +348,12 @@
             border: 1px solid #e5e7eb;
             border-radius: 18px;
             background: #fff;
-            box-shadow: 0 14px 36px rgba(10,10,10,.08);
+            box-shadow: 0 14px 36px rgba(8,11,33,.08);
             transition: transform .45s ease, box-shadow .45s ease;
         }
         .project-gallery-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 26px 60px rgba(10,10,10,.16);
+            box-shadow: 0 26px 60px rgba(8,11,33,.16);
         }
         .project-gallery-cover {
             position: relative;
@@ -320,7 +368,7 @@
             content: "";
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(10,10,10,.7), transparent 58%);
+            background: linear-gradient(to top, rgba(8,11,33,.7), transparent 58%);
         }
         .project-gallery-cover img {
             width: 100%;
@@ -337,7 +385,7 @@
             padding: 8px 12px;
             border-radius: 999px;
             background: rgba(255,255,255,.94);
-            color: #0A0A0A;
+            color: #080B21;
             font-size: .75rem;
             font-weight: 700;
         }
@@ -377,7 +425,7 @@
             max-width: 100%;
             max-height: calc(100vh - 220px);
             object-fit: contain;
-            box-shadow: 0 24px 80px rgba(0,0,0,.45);
+            box-shadow: 0 24px 80px rgba(8,11,33,.45);
         }
         .lightbox-arrow {
             position: absolute;
@@ -390,7 +438,7 @@
             justify-content: center;
             border-radius: 999px;
             background: rgba(255,255,255,.94);
-            color: #0A0A0A;
+            color: #080B21;
             transform: translateY(-50%);
             transition: background .25s ease, color .25s ease;
         }
@@ -430,7 +478,7 @@
             border: 1px solid #e5e7eb;
             background: #fff;
             text-align: left;
-            box-shadow: 0 18px 44px rgba(10,10,10,.13);
+            box-shadow: 0 18px 44px rgba(8,11,33,.13);
             transition: transform .45s ease, box-shadow .45s ease;
         }
         .blog-landscape-card--wide { aspect-ratio: 16 / 6; }
@@ -445,7 +493,7 @@
         }
         .blog-landscape-card:hover {
             transform: translateY(-7px);
-            box-shadow: 0 30px 70px rgba(10,10,10,.22);
+            box-shadow: 0 30px 70px rgba(8,11,33,.22);
         }
         .blog-landscape-card:hover img { transform: scale(1.055); }
         .blog-landscape-title {
@@ -461,7 +509,7 @@
             position: static;
             display: block;
             padding: 22px 24px 24px;
-            color: #111827;
+            color: #080B21;
         }
         .blog-card-copy strong {
             display: block;
@@ -486,7 +534,7 @@
             background: linear-gradient(145deg, #f9fafb, #eef0f4);
             color: #9ca3af;
             font: 700 1.5rem/1 'Playfair Display', serif;
-            box-shadow: 0 14px 36px rgba(10,10,10,.06);
+            box-shadow: 0 14px 36px rgba(8,11,33,.06);
         }
         .blog-coming-card::before {
             content: "";
@@ -503,22 +551,22 @@
             min-height: 380px;
             object-fit: cover;
             border-radius: 22px;
-            box-shadow: 0 24px 70px rgba(10,10,10,.16);
+            box-shadow: 0 24px 70px rgba(8,11,33,.16);
         }
         .blog-content { max-width: 860px; margin: 0 auto; }
-        .blog-content h2 { margin: 2.5rem 0 1rem; font-size: 2rem; line-height: 1.2; color: #111827; }
-        .blog-content h3 { margin: 2rem 0 .75rem; font-size: 1.35rem; color: #111827; }
+        .blog-content h2 { margin: 2.5rem 0 1rem; font-size: 2rem; line-height: 1.2; color: #080B21; }
+        .blog-content h3 { margin: 2rem 0 .75rem; font-size: 1.35rem; color: #080B21; }
         .blog-content p { margin: 0 0 1.15rem; color: #4b5563; line-height: 1.85; }
         .blog-content ul { margin: 1rem 0 1.5rem; padding-left: 1.4rem; list-style: disc; color: #4b5563; }
         .blog-content li { margin-bottom: .75rem; line-height: 1.7; }
-        .blog-content strong { color: #111827; }
+        .blog-content strong { color: #080B21; }
         .manufacturing-video {
             position: relative;
             aspect-ratio: 16 / 9;
             overflow: hidden;
             border-radius: 24px;
-            background: #0A0A0A;
-            box-shadow: 0 30px 80px rgba(10,10,10,.24);
+            background: #080B21;
+            box-shadow: 0 30px 80px rgba(8,11,33,.24);
         }
         .manufacturing-video iframe {
             position: absolute;
@@ -540,7 +588,7 @@
             background: #D91624;
             color: #fff;
             font-weight: 700;
-            box-shadow: 0 12px 28px rgba(0,0,0,.28);
+            box-shadow: 0 12px 28px rgba(8,11,33,.28);
         }
         .manufacturing-step {
             position: relative;
@@ -580,7 +628,7 @@
             border-radius: 12px;
             background: #fff;
             padding: 14px 16px;
-            color: #111827;
+            color: #080B21;
             transition: border-color .2s ease, box-shadow .2s ease;
         }
         .contact-field:focus {
@@ -614,7 +662,7 @@
             width: 72px;
             height: 3px;
             margin-top: 16px;
-            background: linear-gradient(90deg, #0A0A0A, #1D4ED8);
+            background: linear-gradient(90deg, #080B21, #2724D8);
             transform-origin: left;
             animation: lineGrow 1.2s ease both;
         }
@@ -664,9 +712,9 @@
       "email": "info@oliveldesigns.com",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "No. 2, Balaji Nagar Main Road, Kolathur",
+        "streetAddress": "No.70, 2, Market St, Amrithammal Colony, Perambur",
         "addressLocality": "Chennai",
-        "postalCode": "600099",
+        "postalCode": "600011",
         "addressRegion": "Tamil Nadu",
         "addressCountry": "IN"
       },
@@ -682,7 +730,8 @@
         "https://www.instagram.com/oliveldesigns/",
         "https://www.facebook.com/oliveldesigns",
         "https://www.linkedin.com/company/olivel-design-studio/",
-        "https://www.youtube.com/@OlivelDesignsofficial"
+        "https://www.youtube.com/@OlivelDesignsofficial",
+        "https://wa.me/917339666149"
       ]
     }
     </script>
@@ -714,7 +763,7 @@
         <div class="flex space-x-4">
             <a href="tel:+917339666149" class="flex items-center gap-1 hover:text-brand-red transition"><i class="ph ph-phone"></i> +91 733 966 6149</a>
             <a href="mailto:info@oliveldesigns.com" class="flex items-center gap-1 hover:text-brand-red transition"><i class="ph ph-envelope"></i> info@oliveldesigns.com</a>
-            <span class="flex items-center gap-1"><i class="ph ph-map-pin"></i> Chennai, Tamil Nadu</span>
+            <span class="flex items-center gap-1"><i class="ph ph-map-pin"></i> Perambur, Chennai</span>
         </div>
         <div class="flex space-x-4 items-center">
             <span class="text-gray-400">Follow Us:</span>
@@ -722,6 +771,7 @@
             <a href="https://www.facebook.com/oliveldesigns" target="_blank" rel="noopener" aria-label="Olivel Designs on Facebook" class="hover:text-brand-red transition"><i class="ph-fill ph-facebook-logo text-lg"></i></a>
             <a href="https://www.linkedin.com/company/olivel-design-studio/" target="_blank" rel="noopener" aria-label="Olivel Designs on LinkedIn" class="hover:text-brand-red transition"><i class="ph-fill ph-linkedin-logo text-lg"></i></a>
             <a href="https://www.youtube.com/@OlivelDesignsofficial" target="_blank" rel="noopener" aria-label="Olivel Designs on YouTube" class="hover:text-brand-red transition"><i class="ph-fill ph-youtube-logo text-lg"></i></a>
+            <a href="https://wa.me/917339666149" target="_blank" rel="noopener" aria-label="Chat with Olivel Designs on WhatsApp" class="hover:text-brand-red transition"><i class="ph-fill ph-whatsapp-logo text-lg"></i></a>
         </div>
     </div>
 
@@ -754,7 +804,7 @@
 
                 <!-- Mobile Menu Button -->
                 <div class="lg:hidden flex items-center">
-                    <button id="mobile-menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu" class="text-gray-800 hover:text-brand-red focus:outline-none">
+                    <button id="mobile-menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu" class="text-[#080B21] hover:text-brand-red focus:outline-none">
                         <i class="ph ph-list text-3xl"></i>
                     </button>
                 </div>
@@ -762,21 +812,22 @@
         </div>
 
         <!-- Mobile Menu Panel -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-100 absolute w-full shadow-xl">
-            <div class="px-4 pt-2 pb-6 space-y-2">
-                <button onclick="navigate('home'); toggleMobileMenu()" class="block w-full text-left px-3 py-3 text-base font-medium text-gray-800 hover:bg-gray-50 hover:text-brand-red rounded-md">Home</button>
-                <button onclick="navigate('about'); toggleMobileMenu()" class="block w-full text-left px-3 py-3 text-base font-medium text-gray-800 hover:bg-gray-50 hover:text-brand-red rounded-md">About Us</button>
-                <button onclick="navigate('services'); toggleMobileMenu()" class="block w-full text-left px-3 py-3 text-base font-medium text-gray-800 hover:bg-gray-50 hover:text-brand-red rounded-md">Services</button>
-                <button onclick="navigate('portfolio'); toggleMobileMenu()" class="block w-full text-left px-3 py-3 text-base font-medium text-gray-800 hover:bg-gray-50 hover:text-brand-red rounded-md">Portfolio</button>
-                <button onclick="navigate('blog'); toggleMobileMenu()" class="block w-full text-left px-3 py-3 text-base font-medium text-gray-800 hover:bg-gray-50 hover:text-brand-red rounded-md">Blog</button>
-                <button onclick="navigate('manufacturing'); toggleMobileMenu()" class="block w-full text-left px-3 py-3 text-base font-medium text-gray-800 hover:bg-gray-50 hover:text-brand-red rounded-md">Manufacturing</button>
-                <button onclick="navigate('contact'); toggleMobileMenu()" class="block w-full text-left px-3 py-3 text-base font-medium text-gray-800 hover:bg-gray-50 hover:text-brand-red rounded-md">Contact</button>
+        <div id="mobile-menu" class="hidden lg:hidden w-full">
+            <div class="px-5 pt-5 pb-8 space-y-1">
+                <button onclick="navigate('home'); toggleMobileMenu()" class="mobile-nav-link block w-full text-left px-4 py-3.5 text-lg font-medium rounded-lg">Home</button>
+                <button onclick="navigate('about'); toggleMobileMenu()" class="mobile-nav-link block w-full text-left px-4 py-3.5 text-lg font-medium rounded-lg">About Us</button>
+                <button onclick="navigate('services'); toggleMobileMenu()" class="mobile-nav-link block w-full text-left px-4 py-3.5 text-lg font-medium rounded-lg">Services</button>
+                <button onclick="navigate('portfolio'); toggleMobileMenu()" class="mobile-nav-link block w-full text-left px-4 py-3.5 text-lg font-medium rounded-lg">Projects</button>
+                <button onclick="navigate('blog'); toggleMobileMenu()" class="mobile-nav-link block w-full text-left px-4 py-3.5 text-lg font-medium rounded-lg">Blog</button>
+                <button onclick="navigate('manufacturing'); toggleMobileMenu()" class="mobile-nav-link block w-full text-left px-4 py-3.5 text-lg font-medium rounded-lg">Manufacturing</button>
+                <button onclick="navigate('contact'); toggleMobileMenu()" class="mobile-nav-link block w-full text-left px-4 py-3.5 text-lg font-medium rounded-lg">Contact</button>
                 <button onclick="navigate('contact'); toggleMobileMenu()" class="mt-4 w-full bg-brand-red text-white px-6 py-3 rounded-md font-medium text-center">Get Free Quote</button>
-                <div class="flex items-center justify-center gap-5 pt-4 text-gray-700" aria-label="Olivel Designs social media">
-                    <a href="https://www.instagram.com/oliveldesigns/" target="_blank" rel="noopener" aria-label="Instagram"><i class="ph-fill ph-instagram-logo text-2xl"></i></a>
-                    <a href="https://www.facebook.com/oliveldesigns" target="_blank" rel="noopener" aria-label="Facebook"><i class="ph-fill ph-facebook-logo text-2xl"></i></a>
-                    <a href="https://www.linkedin.com/company/olivel-design-studio/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="ph-fill ph-linkedin-logo text-2xl"></i></a>
-                    <a href="https://www.youtube.com/@OlivelDesignsofficial" target="_blank" rel="noopener" aria-label="YouTube"><i class="ph-fill ph-youtube-logo text-2xl"></i></a>
+                <div class="flex flex-wrap items-center justify-center gap-3 pt-6" aria-label="Olivel Designs social media">
+                    <a href="https://www.instagram.com/oliveldesigns/" target="_blank" rel="noopener" aria-label="Instagram" class="mobile-social-link"><i class="ph-fill ph-instagram-logo text-2xl"></i></a>
+                    <a href="https://www.facebook.com/oliveldesigns" target="_blank" rel="noopener" aria-label="Facebook" class="mobile-social-link"><i class="ph-fill ph-facebook-logo text-2xl"></i></a>
+                    <a href="https://www.linkedin.com/company/olivel-design-studio/" target="_blank" rel="noopener" aria-label="LinkedIn" class="mobile-social-link"><i class="ph-fill ph-linkedin-logo text-2xl"></i></a>
+                    <a href="https://www.youtube.com/@OlivelDesignsofficial" target="_blank" rel="noopener" aria-label="YouTube" class="mobile-social-link"><i class="ph-fill ph-youtube-logo text-2xl"></i></a>
+                    <a href="https://wa.me/917339666149" target="_blank" rel="noopener" aria-label="WhatsApp" class="mobile-social-link"><i class="ph-fill ph-whatsapp-logo text-2xl"></i></a>
                 </div>
             </div>
         </div>
@@ -917,7 +968,7 @@
             </section>
 
             <!-- Highlights / Mini Portfolio -->
-            <section class="py-20 bg-gray-900 text-white">
+            <section class="py-20 bg-brand-dark text-white">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex flex-col md:flex-row justify-between items-end mb-12">
                         <div class="max-w-2xl">
@@ -1007,9 +1058,9 @@
             <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-24" aria-label="Founder profile: P. Nithya Kumari">
                 <div class="bg-brand-dark text-white rounded-3xl overflow-hidden shadow-2xl">
                     <div class="grid lg:grid-cols-12">
-                        <div class="lg:col-span-5 relative min-h-[620px] bg-gray-900">
+                        <div class="lg:col-span-5 relative min-h-[620px] bg-brand-dark">
                             <img src="assets/images/brand/founder-nithya-kumari.jpeg" alt="P. Nithya Kumari, Founder and Owner of Olivel Designs" class="absolute inset-0 w-full h-full object-cover object-top">
-                            <div class="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-black/90 via-black/50 to-transparent lg:hidden">
+                            <div class="founder-mobile-overlay absolute inset-x-0 bottom-0 p-8 lg:hidden">
                                 <p class="text-brand-red font-bold uppercase tracking-widest text-sm">Founder &amp; Owner</p>
                                 <h2 class="text-3xl font-bold mt-1">P. Nithya Kumari</h2>
                             </div>
@@ -1333,10 +1384,10 @@
                         <div class="space-y-7">
                             <a href="tel:+917339666149" class="flex gap-4 group"><span class="w-12 h-12 shrink-0 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-brand-red transition"><i class="ph-fill ph-phone text-xl"></i></span><span><small class="block text-gray-400 uppercase tracking-wider">Call us</small><strong class="block text-xl mt-1">+91 733 966 6149</strong></span></a>
                             <a href="mailto:info@oliveldesigns.com" class="flex gap-4 group"><span class="w-12 h-12 shrink-0 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-brand-red transition"><i class="ph-fill ph-envelope text-xl"></i></span><span><small class="block text-gray-400 uppercase tracking-wider">Email us</small><strong class="block text-lg mt-1 break-all">info@oliveldesigns.com</strong></span></a>
-                            <a href="https://www.google.com/maps/search/?api=1&amp;query=No.+2%2C+Balaji+Nagar+Main+Road%2C+Kolathur%2C+Chennai+600099" target="_blank" rel="noopener" class="flex gap-4 group"><span class="w-12 h-12 shrink-0 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-brand-red transition"><i class="ph-fill ph-map-pin text-xl"></i></span><span><small class="block text-gray-400 uppercase tracking-wider">Visit us</small><strong class="block text-lg mt-1">No. 2, Balaji Nagar Main Road, Kolathur, Chennai - 600099</strong></span></a>
+                            <a href="https://www.google.com/maps/search/?api=1&amp;query=No.70%2C+2%2C+Market+St%2C+Amrithammal+Colony%2C+Perambur%2C+Chennai%2C+Tamil+Nadu+600011" target="_blank" rel="noopener" class="flex gap-4 group"><span class="w-12 h-12 shrink-0 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-brand-red transition"><i class="ph-fill ph-map-pin text-xl"></i></span><span><small class="block text-gray-400 uppercase tracking-wider">Visit us</small><strong class="block text-lg mt-1">No.70, 2, Market St, Amrithammal Colony, Perambur, Chennai, Tamil Nadu 600011</strong></span></a>
                             <a href="https://wa.me/917339666149" target="_blank" rel="noopener" class="flex gap-4 group"><span class="w-12 h-12 shrink-0 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-brand-red transition"><i class="ph-fill ph-whatsapp-logo text-xl"></i></span><span><small class="block text-gray-400 uppercase tracking-wider">WhatsApp</small><strong class="block text-lg mt-1">Start a conversation</strong></span></a>
                         </div>
-                        <div class="border-t border-white/10 mt-10 pt-8"><p class="text-sm text-gray-400 mb-4">Follow Olivel Designs</p><div class="flex gap-3"><a href="https://www.instagram.com/oliveldesigns/" target="_blank" rel="noopener" aria-label="Instagram" class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red transition"><i class="ph-fill ph-instagram-logo text-xl"></i></a><a href="https://www.facebook.com/oliveldesigns" target="_blank" rel="noopener" aria-label="Facebook" class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red transition"><i class="ph-fill ph-facebook-logo text-xl"></i></a><a href="https://www.linkedin.com/company/olivel-design-studio/" target="_blank" rel="noopener" aria-label="LinkedIn" class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red transition"><i class="ph-fill ph-linkedin-logo text-xl"></i></a><a href="https://www.youtube.com/@OlivelDesignsofficial" target="_blank" rel="noopener" aria-label="YouTube" class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red transition"><i class="ph-fill ph-youtube-logo text-xl"></i></a></div></div>
+                        <div class="border-t border-white/10 mt-10 pt-8"><p class="text-sm text-gray-400 mb-4">Follow Olivel Designs</p><div class="flex flex-wrap gap-3"><a href="https://www.instagram.com/oliveldesigns/" target="_blank" rel="noopener" aria-label="Instagram" class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red transition"><i class="ph-fill ph-instagram-logo text-xl"></i></a><a href="https://www.facebook.com/oliveldesigns" target="_blank" rel="noopener" aria-label="Facebook" class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red transition"><i class="ph-fill ph-facebook-logo text-xl"></i></a><a href="https://www.linkedin.com/company/olivel-design-studio/" target="_blank" rel="noopener" aria-label="LinkedIn" class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red transition"><i class="ph-fill ph-linkedin-logo text-xl"></i></a><a href="https://www.youtube.com/@OlivelDesignsofficial" target="_blank" rel="noopener" aria-label="YouTube" class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red transition"><i class="ph-fill ph-youtube-logo text-xl"></i></a><a href="https://wa.me/917339666149" target="_blank" rel="noopener" aria-label="WhatsApp" class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red transition"><i class="ph-fill ph-whatsapp-logo text-xl"></i></a></div></div>
                     </aside>
 
                     <div class="lg:col-span-7 bg-white rounded-3xl border border-gray-200 p-8 md:p-12 shadow-sm">
@@ -1360,13 +1411,13 @@
             </section>
 
             <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16" aria-labelledby="map-title">
-                <div class="flex flex-col sm:flex-row justify-between sm:items-end gap-5 mb-7"><div><span class="text-brand-red font-bold tracking-wider uppercase text-sm">Find Our Studio</span><h2 id="map-title" class="text-4xl font-bold mt-2">Kolathur, Chennai</h2></div><a href="https://www.google.com/maps/search/?api=1&amp;query=No.+2%2C+Balaji+Nagar+Main+Road%2C+Kolathur%2C+Chennai+600099" target="_blank" rel="noopener" class="text-brand-red font-semibold">Open in Google Maps <i class="ph ph-arrow-up-right"></i></a></div>
-                <div class="contact-map shadow-xl"><iframe title="Map showing Olivel Designs in Kolathur, Chennai" src="https://www.google.com/maps?q=No.%202%2C%20Balaji%20Nagar%20Main%20Road%2C%20Kolathur%2C%20Chennai%20600099&amp;output=embed" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+                <div class="flex flex-col sm:flex-row justify-between sm:items-end gap-5 mb-7"><div><span class="text-brand-red font-bold tracking-wider uppercase text-sm">Find Our Studio</span><h2 id="map-title" class="text-4xl font-bold mt-2">Perambur, Chennai</h2></div><a href="https://www.google.com/maps/search/?api=1&amp;query=No.70%2C+2%2C+Market+St%2C+Amrithammal+Colony%2C+Perambur%2C+Chennai%2C+Tamil+Nadu+600011" target="_blank" rel="noopener" class="text-brand-red font-semibold">Open in Google Maps <i class="ph ph-arrow-up-right"></i></a></div>
+                <div class="contact-map shadow-xl"><iframe title="Map showing Olivel Designs in Perambur, Chennai" src="https://www.google.com/maps?q=No.70%2C%202%2C%20Market%20St%2C%20Amrithammal%20Colony%2C%20Perambur%2C%20Chennai%2C%20Tamil%20Nadu%20600011&amp;output=embed" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe></div>
             </section>
         </div>
 
         <!-- Project Gallery Lightbox -->
-        <div id="project-lightbox" class="fixed inset-0 z-[100] hidden bg-black/95 p-4 md:p-6" role="dialog" aria-modal="true" aria-labelledby="lightbox-project-title">
+        <div id="project-lightbox" class="fixed inset-0 z-[100] hidden bg-brand-dark p-4 md:p-6" role="dialog" aria-modal="true" aria-labelledby="lightbox-project-title">
             <div class="max-w-7xl mx-auto h-full flex flex-col">
                 <div class="flex items-center justify-between gap-5 text-white pb-4">
                     <div><h2 id="lightbox-project-title" class="text-2xl md:text-3xl font-bold">Project gallery</h2><p id="lightbox-project-location" class="text-sm text-gray-400 mt-1"></p></div>
@@ -1399,6 +1450,7 @@
                         <a href="https://www.facebook.com/oliveldesigns" target="_blank" rel="noopener" aria-label="Olivel Designs on Facebook" class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red transition"><i class="ph-fill ph-facebook-logo text-xl"></i></a>
                         <a href="https://www.linkedin.com/company/olivel-design-studio/" target="_blank" rel="noopener" aria-label="Olivel Designs on LinkedIn" class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red transition"><i class="ph-fill ph-linkedin-logo text-xl"></i></a>
                         <a href="https://www.youtube.com/@OlivelDesignsofficial" target="_blank" rel="noopener" aria-label="Olivel Designs on YouTube" class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red transition"><i class="ph-fill ph-youtube-logo text-xl"></i></a>
+                        <a href="https://wa.me/917339666149" target="_blank" rel="noopener" aria-label="Chat with Olivel Designs on WhatsApp" class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red transition"><i class="ph-fill ph-whatsapp-logo text-xl"></i></a>
                     </div>
                 </div>
 
@@ -1434,7 +1486,7 @@
                     <ul class="space-y-4">
                         <li class="flex items-start gap-3">
                             <i class="ph-fill ph-map-pin text-brand-red text-xl mt-1"></i>
-                            <span class="text-gray-400">No. 2, Balaji Nagar Main Road, Kolathur, Chennai - 600099</span>
+                            <span class="text-gray-400">No.70, 2, Market St, Amrithammal Colony, Perambur, Chennai, Tamil Nadu 600011</span>
                         </li>
                         <li class="flex items-center gap-3">
                             <i class="ph-fill ph-phone text-brand-red text-xl"></i>
@@ -1474,7 +1526,25 @@
             const isOpen = !mobileMenu.classList.contains('hidden');
             mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
             mobileMenuBtn.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+            mobileMenuBtn.querySelector('i').className = isOpen ? 'ph ph-x text-3xl' : 'ph ph-list text-3xl';
+            document.body.classList.toggle('mobile-menu-open', isOpen);
         }
+
+        function closeMobileMenu() {
+            if (mobileMenu.classList.contains('hidden')) return;
+            mobileMenu.classList.add('hidden');
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            mobileMenuBtn.setAttribute('aria-label', 'Open navigation menu');
+            mobileMenuBtn.querySelector('i').className = 'ph ph-list text-3xl';
+            document.body.classList.remove('mobile-menu-open');
+        }
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1024) closeMobileMenu();
+        });
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape') closeMobileMenu();
+        });
 
         // Simple SPA Navigation Logic
         function navigate(pageId, updateHash = true) {
